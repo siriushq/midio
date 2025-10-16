@@ -34,10 +34,10 @@ import (
 	"strings"
 	"time"
 
-	xhttp "github.com/minio/minio/cmd/http"
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/env"
-	xnet "github.com/minio/minio/pkg/net"
+	xhttp "github.com/siriushq/midio/cmd/http"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/env"
+	xnet "github.com/siriushq/midio/pkg/net"
 	"github.com/minio/selfupdate"
 )
 

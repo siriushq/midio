@@ -24,10 +24,10 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 
-	"github.com/minio/minio/browser"
-	"github.com/minio/minio/cmd/logger"
-	jsonrpc "github.com/minio/minio/pkg/rpc"
-	"github.com/minio/minio/pkg/rpc/json2"
+	"github.com/siriushq/midio/browser"
+	"github.com/siriushq/midio/cmd/logger"
+	jsonrpc "github.com/siriushq/midio/pkg/rpc"
+	"github.com/siriushq/midio/pkg/rpc/json2"
 )
 
 // webAPI container for Web API.

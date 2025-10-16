@@ -23,11 +23,11 @@ import (
 	"sort"
 	"time"
 
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/color"
-	"github.com/minio/minio/pkg/console"
-	"github.com/minio/minio/pkg/madmin"
-	"github.com/minio/minio/pkg/wildcard"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/color"
+	"github.com/siriushq/midio/pkg/console"
+	"github.com/siriushq/midio/pkg/madmin"
+	"github.com/siriushq/midio/pkg/wildcard"
 )
 
 const (

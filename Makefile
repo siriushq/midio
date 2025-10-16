@@ -67,14 +67,6 @@ hotfix-vars:
 	$(eval TAG := "minio/minio:$(shell git describe --tags --abbrev=0).hotfix.$(shell git rev-parse --short HEAD)")
 hotfix: hotfix-vars install
 
-docker-hotfix: hotfix checks
-	@echo "Building minio docker image '$(TAG)'"
-	@docker build -t $(TAG) . -f Dockerfile.dev
-
-docker: build checks
-	@echo "Building minio docker image '$(TAG)'"
-	@docker build -t $(TAG) . -f Dockerfile.dev
-
 # Builds minio and installs it to $GOPATH/bin.
 install: build
 	@echo "Installing minio binary to '$(GOPATH)/bin/minio'"

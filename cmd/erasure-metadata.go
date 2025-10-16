@@ -25,10 +25,10 @@ import (
 	"sort"
 	"time"
 
-	xhttp "github.com/minio/minio/cmd/http"
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/bucket/replication"
-	"github.com/minio/minio/pkg/sync/errgroup"
+	xhttp "github.com/siriushq/midio/cmd/http"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/bucket/replication"
+	"github.com/siriushq/midio/pkg/sync/errgroup"
 )
 
 const erasureAlgorithm = "rs-vandermonde"

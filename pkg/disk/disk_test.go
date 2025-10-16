@@ -23,7 +23,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/minio/minio/pkg/disk"
+	"github.com/siriushq/midio/pkg/disk"
 )
 
 func TestFree(t *testing.T) {

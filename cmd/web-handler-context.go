@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/handlers"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/handlers"
 )
 
 const (

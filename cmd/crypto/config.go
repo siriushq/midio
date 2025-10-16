@@ -18,10 +18,10 @@ import (
 	"math/rand"
 	"strings"
 
-	"github.com/minio/minio/cmd/config"
-	"github.com/minio/minio/pkg/ellipses"
-	"github.com/minio/minio/pkg/env"
-	xnet "github.com/minio/minio/pkg/net"
+	"github.com/siriushq/midio/cmd/config"
+	"github.com/siriushq/midio/pkg/ellipses"
+	"github.com/siriushq/midio/pkg/env"
+	xnet "github.com/siriushq/midio/pkg/net"
 )
 
 const (

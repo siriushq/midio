@@ -33,8 +33,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/minio/minio/pkg/dsync"
-	. "github.com/minio/minio/pkg/dsync"
+	"github.com/siriushq/midio/pkg/dsync"
+	. "github.com/siriushq/midio/pkg/dsync"
 )
 
 const numberOfNodes = 5

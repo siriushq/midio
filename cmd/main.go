@@ -22,9 +22,9 @@ import (
 	"sort"
 
 	"github.com/minio/cli"
-	"github.com/minio/minio/pkg/console"
-	"github.com/minio/minio/pkg/trie"
-	"github.com/minio/minio/pkg/words"
+	"github.com/siriushq/midio/pkg/console"
+	"github.com/siriushq/midio/pkg/trie"
+	"github.com/siriushq/midio/pkg/words"
 )
 
 // GlobalFlags - global flags for minio.
@@ -133,10 +133,10 @@ func newApp(name string) *cli.App {
 
 	app := cli.NewApp()
 	app.Name = name
-	app.Author = "MinIO, Inc."
+	app.Author = "@siriushq"
 	app.Version = ReleaseTag
 	app.Usage = "High Performance Object Storage"
-	app.Description = `Build high performance data infrastructure for machine learning, analytics and application data workloads with MinIO`
+	app.Description = `maintained BSD fork of min.io (the high-performance S3-compatible object store)`
 	app.Flags = GlobalFlags
 	app.HideHelpCommand = true // Hide `help, h` command, we already have `minio --help`.
 	app.Commands = commands

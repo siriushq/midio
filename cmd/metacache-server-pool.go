@@ -28,7 +28,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/minio/minio/cmd/logger"
+	"github.com/siriushq/midio/cmd/logger"
 )
 
 func renameAllBucketMetacache(epPath string) error {

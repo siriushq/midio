@@ -19,7 +19,7 @@ package policy
 import (
 	"encoding/json"
 
-	"github.com/minio/minio/pkg/bucket/policy/condition"
+	"github.com/siriushq/midio/pkg/bucket/policy/condition"
 )
 
 // Action - policy action.

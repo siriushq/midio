@@ -26,8 +26,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/minio/minio/pkg/event"
-	xnet "github.com/minio/minio/pkg/net"
+	"github.com/siriushq/midio/pkg/event"
+	xnet "github.com/siriushq/midio/pkg/net"
 	"github.com/pkg/errors"
 
 	"github.com/olivere/elastic/v7"

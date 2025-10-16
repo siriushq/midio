@@ -22,9 +22,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/minio/minio/cmd/logger"
-	iampolicy "github.com/minio/minio/pkg/iam/policy"
-	"github.com/minio/minio/pkg/madmin"
+	"github.com/siriushq/midio/cmd/logger"
+	iampolicy "github.com/siriushq/midio/pkg/iam/policy"
+	"github.com/siriushq/midio/pkg/madmin"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )

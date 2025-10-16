@@ -24,17 +24,17 @@ import (
 	"sync"
 
 	"github.com/minio/minio-go/v7/pkg/tags"
-	"github.com/minio/minio/cmd/crypto"
-	"github.com/minio/minio/cmd/logger"
-	bucketsse "github.com/minio/minio/pkg/bucket/encryption"
-	"github.com/minio/minio/pkg/bucket/lifecycle"
-	objectlock "github.com/minio/minio/pkg/bucket/object/lock"
-	"github.com/minio/minio/pkg/bucket/policy"
-	"github.com/minio/minio/pkg/bucket/replication"
-	"github.com/minio/minio/pkg/bucket/versioning"
-	"github.com/minio/minio/pkg/event"
-	"github.com/minio/minio/pkg/madmin"
-	"github.com/minio/minio/pkg/sync/errgroup"
+	"github.com/siriushq/midio/cmd/crypto"
+	"github.com/siriushq/midio/cmd/logger"
+	bucketsse "github.com/siriushq/midio/pkg/bucket/encryption"
+	"github.com/siriushq/midio/pkg/bucket/lifecycle"
+	objectlock "github.com/siriushq/midio/pkg/bucket/object/lock"
+	"github.com/siriushq/midio/pkg/bucket/policy"
+	"github.com/siriushq/midio/pkg/bucket/replication"
+	"github.com/siriushq/midio/pkg/bucket/versioning"
+	"github.com/siriushq/midio/pkg/event"
+	"github.com/siriushq/midio/pkg/madmin"
+	"github.com/siriushq/midio/pkg/sync/errgroup"
 )
 
 // BucketMetadataSys captures all bucket metadata for a given cluster.

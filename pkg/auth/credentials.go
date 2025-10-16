@@ -28,7 +28,7 @@ import (
 	"time"
 
 	jwtgo "github.com/dgrijalva/jwt-go"
-	"github.com/minio/minio/cmd/jwt"
+	"github.com/siriushq/midio/cmd/jwt"
 )
 
 const (

@@ -28,9 +28,9 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/minio/minio-go/v7/pkg/set"
-	xhttp "github.com/minio/minio/cmd/http"
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/cmd/rest"
+	xhttp "github.com/siriushq/midio/cmd/http"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/cmd/rest"
 )
 
 const (

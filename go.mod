@@ -1,4 +1,4 @@
-module github.com/minio/minio
+module github.com/siriushq/midio
 
 go 1.16
 

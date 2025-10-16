@@ -26,17 +26,17 @@ import (
 	"strings"
 
 	"github.com/gorilla/mux"
-	"github.com/minio/minio/cmd/config"
-	"github.com/minio/minio/cmd/config/cache"
-	"github.com/minio/minio/cmd/config/etcd"
-	xldap "github.com/minio/minio/cmd/config/identity/ldap"
-	"github.com/minio/minio/cmd/config/identity/openid"
-	"github.com/minio/minio/cmd/config/policy/opa"
-	"github.com/minio/minio/cmd/config/storageclass"
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/auth"
-	iampolicy "github.com/minio/minio/pkg/iam/policy"
-	"github.com/minio/minio/pkg/madmin"
+	"github.com/siriushq/midio/cmd/config"
+	"github.com/siriushq/midio/cmd/config/cache"
+	"github.com/siriushq/midio/cmd/config/etcd"
+	xldap "github.com/siriushq/midio/cmd/config/identity/ldap"
+	"github.com/siriushq/midio/cmd/config/identity/openid"
+	"github.com/siriushq/midio/cmd/config/policy/opa"
+	"github.com/siriushq/midio/cmd/config/storageclass"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/auth"
+	iampolicy "github.com/siriushq/midio/pkg/iam/policy"
+	"github.com/siriushq/midio/pkg/madmin"
 )
 
 func validateAdminReqConfigKV(ctx context.Context, w http.ResponseWriter, r *http.Request) (auth.Credentials, ObjectLayer) {

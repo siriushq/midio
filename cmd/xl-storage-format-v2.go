@@ -27,8 +27,8 @@ import (
 
 	"github.com/cespare/xxhash/v2"
 	"github.com/google/uuid"
-	xhttp "github.com/minio/minio/cmd/http"
-	"github.com/minio/minio/cmd/logger"
+	xhttp "github.com/siriushq/midio/cmd/http"
+	"github.com/siriushq/midio/cmd/logger"
 	"github.com/tinylib/msgp/msgp"
 )
 

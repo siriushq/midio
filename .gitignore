@@ -1,13 +1,13 @@
 **/*.swp
 cover.out
 *~
-minio
+midio
+midio.exe
 !*/
 site/
 **/*.test
 **/*.sublime-workspace
 /.idea/
-/Minio.iml
 **/access.log
 vendor/**/*.js
 vendor/**/*.json

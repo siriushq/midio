@@ -26,12 +26,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/bpool"
-	"github.com/minio/minio/pkg/color"
-	"github.com/minio/minio/pkg/dsync"
-	"github.com/minio/minio/pkg/madmin"
-	"github.com/minio/minio/pkg/sync/errgroup"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/bpool"
+	"github.com/siriushq/midio/pkg/color"
+	"github.com/siriushq/midio/pkg/dsync"
+	"github.com/siriushq/midio/pkg/madmin"
+	"github.com/siriushq/midio/pkg/sync/errgroup"
 )
 
 // OfflineDisk represents an unavailable disk.

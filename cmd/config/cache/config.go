@@ -22,8 +22,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/minio/minio/cmd/config"
-	"github.com/minio/minio/pkg/ellipses"
+	"github.com/siriushq/midio/cmd/config"
+	"github.com/siriushq/midio/pkg/ellipses"
 )
 
 // Config represents cache config settings

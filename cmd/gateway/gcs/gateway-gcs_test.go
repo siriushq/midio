@@ -29,7 +29,7 @@ import (
 	"google.golang.org/api/googleapi"
 
 	miniogo "github.com/minio/minio-go/v7"
-	minio "github.com/minio/minio/cmd"
+	minio "github.com/siriushq/midio/cmd"
 )
 
 func TestToGCSPageToken(t *testing.T) {

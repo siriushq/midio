@@ -25,9 +25,9 @@ import (
 	"path"
 	"time"
 
-	"github.com/minio/minio/cmd/config"
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/lock"
+	"github.com/siriushq/midio/cmd/config"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/lock"
 )
 
 // FS format version strings.

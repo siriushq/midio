@@ -19,7 +19,7 @@ package compress
 import (
 	"strings"
 
-	"github.com/minio/minio/cmd/config"
+	"github.com/siriushq/midio/cmd/config"
 )
 
 // Legacy envs.

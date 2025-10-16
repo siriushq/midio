@@ -31,10 +31,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/minio/minio/cmd/crypto"
-	xhttp "github.com/minio/minio/cmd/http"
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/fips"
+	"github.com/siriushq/midio/cmd/crypto"
+	xhttp "github.com/siriushq/midio/cmd/http"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/fips"
 	"github.com/minio/sio"
 )
 

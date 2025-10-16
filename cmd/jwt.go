@@ -23,9 +23,9 @@ import (
 
 	jwtgo "github.com/dgrijalva/jwt-go"
 	jwtreq "github.com/dgrijalva/jwt-go/request"
-	xjwt "github.com/minio/minio/cmd/jwt"
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/auth"
+	xjwt "github.com/siriushq/midio/cmd/jwt"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/auth"
 )
 
 const (

@@ -24,8 +24,8 @@ import (
 
 	humanize "github.com/dustin/go-humanize"
 	"github.com/minio/minio-go/v7/pkg/encrypt"
-	"github.com/minio/minio/cmd/crypto"
-	xhttp "github.com/minio/minio/cmd/http"
+	"github.com/siriushq/midio/cmd/crypto"
+	xhttp "github.com/siriushq/midio/cmd/http"
 	"github.com/minio/sio"
 )
 

@@ -24,8 +24,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/lock"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/lock"
 )
 
 // Removes only the file at given path does not remove

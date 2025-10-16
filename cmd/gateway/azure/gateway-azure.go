@@ -41,13 +41,13 @@ import (
 	humanize "github.com/dustin/go-humanize"
 	"github.com/minio/cli"
 	miniogopolicy "github.com/minio/minio-go/v7/pkg/policy"
-	minio "github.com/minio/minio/cmd"
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/auth"
-	"github.com/minio/minio/pkg/bucket/policy"
-	"github.com/minio/minio/pkg/bucket/policy/condition"
-	"github.com/minio/minio/pkg/env"
-	"github.com/minio/minio/pkg/madmin"
+	minio "github.com/siriushq/midio/cmd"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/auth"
+	"github.com/siriushq/midio/pkg/bucket/policy"
+	"github.com/siriushq/midio/pkg/bucket/policy/condition"
+	"github.com/siriushq/midio/pkg/env"
+	"github.com/siriushq/midio/pkg/madmin"
 )
 
 const (

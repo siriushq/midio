@@ -19,8 +19,8 @@ package iampolicy
 import (
 	"strings"
 
-	"github.com/minio/minio/pkg/bucket/policy"
-	"github.com/minio/minio/pkg/bucket/policy/condition"
+	"github.com/siriushq/midio/pkg/bucket/policy"
+	"github.com/siriushq/midio/pkg/bucket/policy/condition"
 )
 
 // Statement - iam policy statement.

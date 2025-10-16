@@ -28,10 +28,10 @@ import (
 	"time"
 
 	jsoniter "github.com/json-iterator/go"
-	xhttp "github.com/minio/minio/cmd/http"
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/lock"
-	"github.com/minio/minio/pkg/mimedb"
+	xhttp "github.com/siriushq/midio/cmd/http"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/lock"
+	"github.com/siriushq/midio/pkg/mimedb"
 )
 
 // FS format, and object metadata.

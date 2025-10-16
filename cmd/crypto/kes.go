@@ -31,9 +31,9 @@ import (
 	"time"
 
 	jsoniter "github.com/json-iterator/go"
-	xhttp "github.com/minio/minio/cmd/http"
-	"github.com/minio/minio/pkg/kms"
-	xnet "github.com/minio/minio/pkg/net"
+	xhttp "github.com/siriushq/midio/cmd/http"
+	"github.com/siriushq/midio/pkg/kms"
+	xnet "github.com/siriushq/midio/pkg/net"
 )
 
 var json = jsoniter.ConfigCompatibleWithStandardLibrary

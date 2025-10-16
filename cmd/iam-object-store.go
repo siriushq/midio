@@ -27,12 +27,12 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/minio/minio/cmd/config"
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/auth"
-	iampolicy "github.com/minio/minio/pkg/iam/policy"
-	"github.com/minio/minio/pkg/kms"
-	"github.com/minio/minio/pkg/madmin"
+	"github.com/siriushq/midio/cmd/config"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/auth"
+	iampolicy "github.com/siriushq/midio/pkg/iam/policy"
+	"github.com/siriushq/midio/pkg/kms"
+	"github.com/siriushq/midio/pkg/madmin"
 )
 
 // IAMObjectStore implements IAMStorageAPI

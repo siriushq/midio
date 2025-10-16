@@ -31,11 +31,11 @@ import (
 	"regexp"
 	"strings"
 
-	xhttp "github.com/minio/minio/cmd/http"
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/auth"
-	"github.com/minio/minio/pkg/handlers"
-	"github.com/minio/minio/pkg/madmin"
+	xhttp "github.com/siriushq/midio/cmd/http"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/auth"
+	"github.com/siriushq/midio/pkg/handlers"
+	"github.com/siriushq/midio/pkg/madmin"
 )
 
 const (

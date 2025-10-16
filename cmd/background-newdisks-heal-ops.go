@@ -30,10 +30,10 @@ import (
 
 	"github.com/dustin/go-humanize"
 	"github.com/minio/minio-go/v7/pkg/set"
-	"github.com/minio/minio/cmd/logger"
-	"github.com/minio/minio/pkg/color"
-	"github.com/minio/minio/pkg/console"
-	"github.com/minio/minio/pkg/madmin"
+	"github.com/siriushq/midio/cmd/logger"
+	"github.com/siriushq/midio/pkg/color"
+	"github.com/siriushq/midio/pkg/console"
+	"github.com/siriushq/midio/pkg/madmin"
 )
 
 const (
