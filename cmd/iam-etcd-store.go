@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2019 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package cmd
 
 import (
@@ -52,10 +36,11 @@ func etcdKvsToSet(prefix string, kvs []*mvccpb.KeyValue) set.StringSet {
 
 // Extract path string by stripping off the `prefix` value and the suffix,
 // value, usually in the following form.
-//  s := "config/iam/users/foo/config.json"
-//  prefix := "config/iam/users/"
-//  suffix := "config.json"
-//  result is foo
+//
+//	s := "config/iam/users/foo/config.json"
+//	prefix := "config/iam/users/"
+//	suffix := "config.json"
+//	result is foo
 func extractPathPrefixAndSuffix(s string, prefix string, suffix string) string {
 	return pathClean(strings.TrimSuffix(strings.TrimPrefix(string(s), prefix), suffix))
 }

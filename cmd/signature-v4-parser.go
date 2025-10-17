@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2015 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package cmd
 
 import (
@@ -171,12 +155,12 @@ type preSignValues struct {
 
 // Parses signature version '4' query string of the following form.
 //
-//   querystring = X-Amz-Algorithm=algorithm
-//   querystring += &X-Amz-Credential= urlencode(accessKey + '/' + credential_scope)
-//   querystring += &X-Amz-Date=date
-//   querystring += &X-Amz-Expires=timeout interval
-//   querystring += &X-Amz-SignedHeaders=signed_headers
-//   querystring += &X-Amz-Signature=signature
+//	querystring = X-Amz-Algorithm=algorithm
+//	querystring += &X-Amz-Credential= urlencode(accessKey + '/' + credential_scope)
+//	querystring += &X-Amz-Date=date
+//	querystring += &X-Amz-Expires=timeout interval
+//	querystring += &X-Amz-SignedHeaders=signed_headers
+//	querystring += &X-Amz-Signature=signature
 //
 // verifies if any of the necessary query params are missing in the presigned request.
 func doesV4PresignParamsExist(query url.Values) APIErrorCode {
@@ -251,9 +235,8 @@ func parsePreSignV4(query url.Values, region string, stype serviceType) (psv pre
 
 // Parses signature version '4' header of the following form.
 //
-//    Authorization: algorithm Credential=accessKeyID/credScope, \
-//            SignedHeaders=signedHeaders, Signature=signature
-//
+//	Authorization: algorithm Credential=accessKeyID/credScope, \
+//	        SignedHeaders=signedHeaders, Signature=signature
 func parseSignV4(v4Auth string, region string, stype serviceType) (sv signValues, aec APIErrorCode) {
 	// credElement is fetched first to skip replacing the space in access key.
 	credElement := strings.TrimPrefix(strings.Split(strings.TrimSpace(v4Auth), ",")[0], signV4Algorithm)

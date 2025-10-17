@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2015-2020 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package cmd
 
 import (
@@ -65,11 +49,16 @@ const (
 // - Check if a bucket has an entry in etcd backend
 // -- If no, make an entry
 // -- If yes, check if the entry matches local IP check if we
-//    need to update the entry then proceed to update
+//
+//	need to update the entry then proceed to update
+//
 // -- If yes, check if the IP of entry matches local IP.
-//    This means entry is for this instance.
+//
+//	This means entry is for this instance.
+//
 // -- If IP of the entry doesn't match, this means entry is
-//    for another instance. Log an error to console.
+//
+//	for another instance. Log an error to console.
 func initFederatorBackend(buckets []BucketInfo, objLayer ObjectLayer) {
 	if len(buckets) == 0 {
 		return
@@ -224,7 +213,6 @@ func (api objectAPIHandlers) GetBucketLocationHandler(w http.ResponseWriter, r *
 // using the Initiate Multipart Upload request, but has not yet been
 // completed or aborted. This operation returns at most 1,000 multipart
 // uploads in the response.
-//
 func (api objectAPIHandlers) ListMultipartUploadsHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := newContext(r, w, "ListMultipartUploads")
 

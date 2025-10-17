@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2015, 2016, 2017, 2018 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package cmd
 
 import (
@@ -121,19 +105,19 @@ func TestMain(m *testing.M) {
 // concurrency level for certain parallel tests.
 const testConcurrencyLevel = 10
 
-///
-/// Excerpts from @lsegal - https://github.com/aws/aws-sdk-js/issues/659#issuecomment-120477258
-///
-///  User-Agent:
-///
-///      This is ignored from signing because signing this causes problems with generating pre-signed URLs
-///      (that are executed by other agents) or when customers pass requests through proxies, which may
-///      modify the user-agent.
-///
-///  Authorization:
-///
-///      Is skipped for obvious reasons
-///
+// /
+// / Excerpts from @lsegal - https://github.com/aws/aws-sdk-js/issues/659#issuecomment-120477258
+// /
+// /  User-Agent:
+// /
+// /      This is ignored from signing because signing this causes problems with generating pre-signed URLs
+// /      (that are executed by other agents) or when customers pass requests through proxies, which may
+// /      modify the user-agent.
+// /
+// /  Authorization:
+// /
+// /      Is skipped for obvious reasons
+// /
 var ignoredHeaders = map[string]bool{
 	"Authorization": true,
 	"User-Agent":    true,
@@ -288,8 +272,9 @@ func isSameType(obj1, obj2 interface{}) bool {
 
 // TestServer encapsulates an instantiation of a MinIO instance with a temporary backend.
 // Example usage:
-//   s := StartTestServer(t,"Erasure")
-//   defer s.Stop()
+//
+//	s := StartTestServer(t,"Erasure")
+//	defer s.Stop()
 type TestServer struct {
 	Root      string
 	Disks     EndpointServerPools
@@ -1595,7 +1580,7 @@ func removeRoots(roots []string) {
 	}
 }
 
-//removeDiskN - removes N disks from supplied disk slice.
+// removeDiskN - removes N disks from supplied disk slice.
 func removeDiskN(disks []string, n int) {
 	if n > len(disks) {
 		n = len(disks)
@@ -1658,11 +1643,14 @@ func prepareTestBackend(ctx context.Context, instanceType string) (ObjectLayer, 
 // response for anonymous/unsigned and unknown signature type HTTP request.
 
 // Here is the brief description of some of the arguments to the function below.
-//   apiRouter - http.Handler with the relevant API endPoint (API endPoint under test) registered.
-//   anonReq   - unsigned *http.Request to invoke the handler's response for anonymous requests.
-//   policyFunc    - function to return bucketPolicy statement which would permit the anonymous request to be served.
+//
+//	apiRouter - http.Handler with the relevant API endPoint (API endPoint under test) registered.
+//	anonReq   - unsigned *http.Request to invoke the handler's response for anonymous requests.
+//	policyFunc    - function to return bucketPolicy statement which would permit the anonymous request to be served.
+//
 // The test works in 2 steps, here is the description of the steps.
-//   STEP 1: Call the handler with the unsigned HTTP request (anonReq), assert for the `ErrAccessDenied` error response.
+//
+//	STEP 1: Call the handler with the unsigned HTTP request (anonReq), assert for the `ErrAccessDenied` error response.
 func ExecObjectLayerAPIAnonTest(t *testing.T, obj ObjectLayer, testName, bucketName, objectName, instanceType string, apiRouter http.Handler,
 	anonReq *http.Request, bucketPolicy *policy.Policy) {
 

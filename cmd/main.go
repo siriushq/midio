@@ -1,24 +1,7 @@
-/*
- * MinIO Cloud Storage, (C) 2015-2019 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package cmd
 
 import (
 	"os"
-	"path/filepath"
 	"sort"
 
 	"github.com/minio/cli"
@@ -87,7 +70,7 @@ VERSION:
   {{.Version}}
 `
 
-func newApp(name string) *cli.App {
+func NewApp(name string) *cli.App {
 	// Collection of minio commands currently supported are.
 	commands := []cli.Command{}
 
@@ -142,7 +125,7 @@ func newApp(name string) *cli.App {
 	app.Commands = commands
 	app.CustomAppHelpTemplate = minioHelpTemplate
 	app.CommandNotFound = func(ctx *cli.Context, command string) {
-		console.Printf("‘%s’ is not a minio sub-command. See ‘minio --help’.\n", command)
+		console.Printf("‘%s’ is not a midio sub-command. See ‘midio --help’.\n", command)
 		closestCommands := findClosestCommands(command)
 		if len(closestCommands) > 0 {
 			console.Println()
@@ -156,15 +139,4 @@ func newApp(name string) *cli.App {
 	}
 
 	return app
-}
-
-// Main main for minio server.
-func Main(args []string) {
-	// Set the minio app name.
-	appName := filepath.Base(args[0])
-
-	// Run the app - exit on error.
-	if err := newApp(appName).Run(args); err != nil {
-		os.Exit(1)
-	}
 }

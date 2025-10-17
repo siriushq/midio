@@ -10,17 +10,20 @@ siriushq/midio
 
 	<ⓘ> Contact "midio@mechite.com" for support (more information below...)
 	<ⓘ> It is not a goal of this project to fork the other tools, such as `mc`.
+	<ⓘ> `midio gateway` may be deprecated, if it cannot be easily maintained.
 
 building
 ========
 
-	The preferred environment uses Go >1.25.
+	The preferred environment uses Git and Go >1.25.
 
 	$ git clone --recursive git@github.com:siriushq/midio.git
 	$ cd midio
+	$ go generate
 	$ go build
 
 	This produces a runnable binary for the system you are building on.
+	[go generate] will fail if you did not clone the repository maintaining [.git].
 
 contributing
 ============

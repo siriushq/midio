@@ -1,36 +1,29 @@
 /*
- * MinIO Cloud Storage, (C) 2016-2020 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/*
  * Below main package has canonical imports for 'go get' and 'go build'
  * to work with all other clones of github.com/minio/minio repository. For
  * more information refer https://golang.org/doc/go1.4#canonicalimports
  */
 
-package main // import "github.com/minio/minio"
+//go:generate go run main_build.go
+
+package main
 
 import (
 	"os"
+	"path/filepath"
 
-	minio "github.com/siriushq/midio/cmd"
+	midio "github.com/siriushq/midio/cmd"
 
 	// Import gateway
 	_ "github.com/siriushq/midio/cmd/gateway"
 )
 
 func main() {
-	minio.Main(os.Args)
+	args := os.Args
+	appName := filepath.Base(args[0])
+
+	app := midio.NewApp(appName)
+	if err := app.Run(args); err != nil {
+		os.Exit(1)
+	}
 }

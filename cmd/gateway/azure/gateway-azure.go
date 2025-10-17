@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2017-2020 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package azure
 
 import (
@@ -654,12 +638,12 @@ func (a *azureObjects) DeleteBucket(ctx context.Context, bucket string, forceDel
 // distinguish between Azure continuation tokens and application
 // supplied markers.
 //
-// - NextMarker in ListObjectsV1 response is constructed by
-//   prefixing "{minio}" to the Azure continuation token,
-//   e.g, "{minio}CgRvYmoz"
+//   - NextMarker in ListObjectsV1 response is constructed by
+//     prefixing "{minio}" to the Azure continuation token,
+//     e.g, "{minio}CgRvYmoz"
 //
-// - Application supplied markers are used as-is to list
-//   object keys that appear after it in the lexicographical order.
+//   - Application supplied markers are used as-is to list
+//     object keys that appear after it in the lexicographical order.
 func (a *azureObjects) ListObjects(ctx context.Context, bucket, prefix, marker, delimiter string, maxKeys int) (result minio.ListObjectsInfo, err error) {
 	var objects []minio.ObjectInfo
 	var prefixes []string

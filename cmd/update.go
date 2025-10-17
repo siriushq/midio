@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2015-2021 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package cmd
 
 import (
@@ -34,11 +18,11 @@ import (
 	"strings"
 	"time"
 
+	"github.com/minio/selfupdate"
 	xhttp "github.com/siriushq/midio/cmd/http"
 	"github.com/siriushq/midio/cmd/logger"
 	"github.com/siriushq/midio/pkg/env"
 	xnet "github.com/siriushq/midio/pkg/net"
-	"github.com/minio/selfupdate"
 )
 
 const (
@@ -122,8 +106,7 @@ func GetCurrentReleaseTime() (releaseTime time.Time, err error) {
 //
 // https://github.com/moby/moby/blob/master/daemon/initlayer/setup_unix.go#L25
 //
-//     "/.dockerenv":      "file",
-//
+//	"/.dockerenv":      "file",
 func IsDocker() bool {
 	if env.Get("MINIO_CI_CD", "") == "" {
 		_, err := os.Stat("/.dockerenv")
@@ -224,7 +207,7 @@ func IsPCFTile() bool {
 // DO NOT CHANGE USER AGENT STYLE.
 // The style should be
 //
-//   MinIO (<OS>; <ARCH>[; <MODE>][; dcos][; kubernetes][; docker][; source]) MinIO/<VERSION> MinIO/<RELEASE-TAG> MinIO/<COMMIT-ID> [MinIO/universe-<PACKAGE-NAME>] [MinIO/helm-<HELM-VERSION>]
+//	MinIO (<OS>; <ARCH>[; <MODE>][; dcos][; kubernetes][; docker][; source]) MinIO/<VERSION> MinIO/<RELEASE-TAG> MinIO/<COMMIT-ID> [MinIO/universe-<PACKAGE-NAME>] [MinIO/helm-<HELM-VERSION>]
 //
 // Any change here should be discussed by opening an issue at
 // https://github.com/minio/minio/issues.

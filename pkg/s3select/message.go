@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2019 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package s3select
 
 import (
@@ -129,9 +113,9 @@ var progressHeader = []byte{
 //
 // Payload specification:
 // Progress message payload is an XML document containing information about the progress of a request.
-//   * BytesScanned => Number of bytes that have been processed before being uncompressed (if the file is compressed).
-//   * BytesProcessed => Number of bytes that have been processed after being uncompressed (if the file is compressed).
-//   * BytesReturned => Current number of bytes of records payload data returned by S3.
+//   - BytesScanned => Number of bytes that have been processed before being uncompressed (if the file is compressed).
+//   - BytesProcessed => Number of bytes that have been processed after being uncompressed (if the file is compressed).
+//   - BytesReturned => Current number of bytes of records payload data returned by S3.
 //
 // For uncompressed files, BytesScanned and BytesProcessed are equal.
 //
@@ -139,11 +123,12 @@ var progressHeader = []byte{
 //
 // <?xml version="1.0" encoding="UTF-8"?>
 // <Progress>
-//   <BytesScanned>512</BytesScanned>
-//   <BytesProcessed>1024</BytesProcessed>
-//   <BytesReturned>1024</BytesReturned>
-// </Progress>
 //
+//	<BytesScanned>512</BytesScanned>
+//	<BytesProcessed>1024</BytesProcessed>
+//	<BytesReturned>1024</BytesReturned>
+//
+// </Progress>
 func newProgressMessage(bytesScanned, bytesProcessed, bytesReturned int64) []byte {
 	payload := []byte(`<?xml version="1.0" encoding="UTF-8"?><Progress><BytesScanned>` +
 		strconv.FormatInt(bytesScanned, 10) + `</BytesScanned><BytesProcessed>` +
@@ -168,9 +153,9 @@ var statsHeader = []byte{
 //
 // Payload specification:
 // Stats message payload is an XML document containing information about a request's stats when processing is complete.
-//   * BytesScanned => Number of bytes that have been processed before being uncompressed (if the file is compressed).
-//   * BytesProcessed => Number of bytes that have been processed after being uncompressed (if the file is compressed).
-//   * BytesReturned => Total number of bytes of records payload data returned by S3.
+//   - BytesScanned => Number of bytes that have been processed before being uncompressed (if the file is compressed).
+//   - BytesProcessed => Number of bytes that have been processed after being uncompressed (if the file is compressed).
+//   - BytesReturned => Total number of bytes of records payload data returned by S3.
 //
 // For uncompressed files, BytesScanned and BytesProcessed are equal.
 //
@@ -178,9 +163,11 @@ var statsHeader = []byte{
 //
 // <?xml version="1.0" encoding="UTF-8"?>
 // <Stats>
-//      <BytesScanned>512</BytesScanned>
-//      <BytesProcessed>1024</BytesProcessed>
-//      <BytesReturned>1024</BytesReturned>
+//
+//	<BytesScanned>512</BytesScanned>
+//	<BytesProcessed>1024</BytesProcessed>
+//	<BytesReturned>1024</BytesReturned>
+//
 // </Stats>
 func newStatsMessage(bytesScanned, bytesProcessed, bytesReturned int64) []byte {
 	payload := []byte(`<?xml version="1.0" encoding="UTF-8"?><Stats><BytesScanned>` +

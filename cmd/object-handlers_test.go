@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2016, 2017, 2018 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package cmd
 
 import (
@@ -3443,7 +3427,8 @@ func testAPIPutObjectPartHandlerStreaming(obj ObjectLayer, instanceType, bucketN
 }
 
 // TestAPIPutObjectPartHandler - Tests validate the response of PutObjectPart HTTP handler
-//  for variety of inputs.
+//
+//	for variety of inputs.
 func TestAPIPutObjectPartHandler(t *testing.T) {
 	defer DetectTestLeak(t)()
 	ExecExtendedObjectLayerAPITest(t, testAPIPutObjectPartHandler, []string{"PutObjectPart"})
@@ -3759,7 +3744,8 @@ func testAPIPutObjectPartHandler(obj ObjectLayer, instanceType, bucketName strin
 }
 
 // TestAPIListObjectPartsHandlerPreSign - Tests validate the response of ListObjectParts HTTP handler
-//  when signature type of the HTTP request is `Presigned`.
+//
+//	when signature type of the HTTP request is `Presigned`.
 func TestAPIListObjectPartsHandlerPreSign(t *testing.T) {
 	defer DetectTestLeak(t)()
 	ExecObjectLayerAPITest(t, testAPIListObjectPartsHandlerPreSign,
@@ -3848,7 +3834,8 @@ func testAPIListObjectPartsHandlerPreSign(obj ObjectLayer, instanceType, bucketN
 }
 
 // TestAPIListObjectPartsHandler - Tests validate the response of ListObjectParts HTTP handler
-//  for variety of success/failure cases.
+//
+//	for variety of success/failure cases.
 func TestAPIListObjectPartsHandler(t *testing.T) {
 	defer DetectTestLeak(t)()
 	ExecExtendedObjectLayerAPITest(t, testAPIListObjectPartsHandler, []string{"ListObjectParts"})

@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2016 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package cmd
 
 import (
@@ -50,9 +34,9 @@ func concurrentDecryptETag(ctx context.Context, objects []ObjectInfo) {
 // Validate all the ListObjects query arguments, returns an APIErrorCode
 // if one of the args do not meet the required conditions.
 // Special conditions required by MinIO server are as below
-// - delimiter if set should be equal to '/', otherwise the request is rejected.
-// - marker if set should have a common prefix with 'prefix' param, otherwise
-//   the request is rejected.
+//   - delimiter if set should be equal to '/', otherwise the request is rejected.
+//   - marker if set should have a common prefix with 'prefix' param, otherwise
+//     the request is rejected.
 func validateListObjectsArgs(marker, delimiter, encodingType string, maxKeys int) APIErrorCode {
 	// Max keys cannot be negative.
 	if maxKeys < 0 {
@@ -299,7 +283,6 @@ func proxyRequestByNodeIndex(ctx context.Context, w http.ResponseWriter, r *http
 // This implementation of the GET operation returns some or all (up to 10000)
 // of the objects in a bucket. You can use the request parameters as selection
 // criteria to return a subset of the objects in a bucket.
-//
 func (api objectAPIHandlers) ListObjectsV1Handler(w http.ResponseWriter, r *http.Request) {
 	ctx := newContext(r, w, "ListObjectsV1")
 

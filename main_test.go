@@ -1,20 +1,5 @@
+//go:build testrunmain
 // +build testrunmain
-
-/*
- * MinIO Cloud Storage, (C) 2021 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package main
 
@@ -38,8 +23,9 @@ import (
 // 1. As an alternative you can also run the system under test by just by calling "go test"
 // $ APP_ARGS="server /tmp/test" go test -cover -tags testrunmain -covermode count -coverpkg="./..." -coverprofile=coverage.cov
 //
-// 2. Run System-Tests (when using GitBash prefix this line with MSYS_NO_PATHCONV=1)
-//    Note the the SERVER_ENDPOINT must be reachable from inside the docker container (so don't use localhost!)
+//  2. Run System-Tests (when using GitBash prefix this line with MSYS_NO_PATHCONV=1)
+//     Note the the SERVER_ENDPOINT must be reachable from inside the docker container (so don't use localhost!)
+//
 // $ docker run -e MINT_MODE=full -e SERVER_ENDPOINT=192.168.47.11:9000 -e ACCESS_KEY=minioadmin -e SECRET_KEY=minioadmin -v /tmp/mint/log:/mint/log minio/mint
 //
 // 3. Stop system under test by sending SIGTERM

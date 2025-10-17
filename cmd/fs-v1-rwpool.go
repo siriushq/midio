@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2016 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package cmd
 
 import (
@@ -138,10 +122,10 @@ func (fsi *fsIOPool) Open(path string) (*lock.RLockedFile, error) {
 }
 
 // Write - Attempt to lock the file if it exists,
-// - if the file exists. Then we try to get a write lock this
-//   will block if we can't get a lock perhaps another write
-//   or read is in progress. Concurrent calls are protected
-//   by the global namspace lock within the same process.
+//   - if the file exists. Then we try to get a write lock this
+//     will block if we can't get a lock perhaps another write
+//     or read is in progress. Concurrent calls are protected
+//     by the global namspace lock within the same process.
 func (fsi *fsIOPool) Write(path string) (wlk *lock.LockedFile, err error) {
 	if err = checkPathLength(path); err != nil {
 		return nil, err

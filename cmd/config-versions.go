@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2016, 2017, 2018 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package cmd
 
 import (
@@ -33,14 +17,14 @@ import (
 	"github.com/siriushq/midio/pkg/quick"
 )
 
-/////////////////// Config V1 ///////////////////
+// ///////////////// Config V1 ///////////////////
 type configV1 struct {
 	Version   string `json:"version"`
 	AccessKey string `json:"accessKeyId"`
 	SecretKey string `json:"secretAccessKey"`
 }
 
-/////////////////// Config V2 ///////////////////
+// ///////////////// Config V2 ///////////////////
 type configV2 struct {
 	Version     string `json:"version"`
 	Credentials struct {
@@ -62,7 +46,7 @@ type configV2 struct {
 	} `json:"fileLogger"`
 }
 
-/////////////////// Config V3 ///////////////////
+// ///////////////// Config V3 ///////////////////
 // backendV3 type.
 type backendV3 struct {
 	Type  string   `json:"type"`

@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage (C) 2018 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { READ_ONLY, WRITE_ONLY, READ_WRITE } from '../constants'
 
 import React from "react"
@@ -37,10 +21,10 @@ export class PolicyInput extends React.Component {
   handlePolicySubmit(e) {
     e.preventDefault()
     const { currentBucket, fetchPolicies, showAlert } = this.props
-    
+
     if (this.prefix.value === "*")
       this.prefix.value = ""
-    
+
     let policyAlreadyExists = this.props.policies.some(
       elem => this.prefix.value === elem.prefix && this.policy.value === elem.policy
     )
@@ -48,7 +32,7 @@ export class PolicyInput extends React.Component {
       showAlert("danger", "Policy for this prefix already exists.")
       return
     }
-    
+
     web.
       SetBucketPolicy({
         bucketName: currentBucket,
@@ -66,7 +50,7 @@ export class PolicyInput extends React.Component {
     return (
       <header className="pmb-list">
         <div className="pmbl-item">
-          <input 
+          <input
             type="text"
             ref={ prefix => this.prefix = prefix }
             className="form-control"

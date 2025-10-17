@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage (C) 2018 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import React from "react"
 import classNames from "classnames"
 import { connect } from "react-redux"
@@ -44,10 +28,10 @@ export class BucketDropdown extends React.Component {
   render() {
     const { bucket, showBucketPolicy, deleteBucket, currentBucket } = this.props
     return (
-      <Dropdown 
+      <Dropdown
         open = {this.state.showBucketDropdown}
         onToggle = {this.toggleDropdown.bind(this)}
-        className="bucket-dropdown" 
+        className="bucket-dropdown"
         id="bucket-dropdown"
       >
         <Dropdown.Toggle noCaret>
@@ -55,7 +39,7 @@ export class BucketDropdown extends React.Component {
         </Dropdown.Toggle>
         <Dropdown.Menu className="dropdown-menu-right">
           <li>
-            <a 
+            <a
               onClick={e => {
                 e.stopPropagation()
                 this.toggleDropdown()
@@ -66,7 +50,7 @@ export class BucketDropdown extends React.Component {
             </a>
           </li>
           <li>
-            <a 
+            <a
               onClick={e => {
                 e.stopPropagation()
                 this.toggleDropdown()

@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2019 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package lifecycle
 
 import (
@@ -352,8 +336,9 @@ func (lc Lifecycle) ComputeAction(obj ObjectOpts) Action {
 // ExpectedExpiryTime calculates the expiry, transition or restore date/time based on a object modtime.
 // The expected transition or restore time is always a midnight time following the the object
 // modification time plus the number of transition/restore days.
-//   e.g. If the object modtime is `Thu May 21 13:42:50 GMT 2020` and the object should
-//       transition in 1 day, then the expected transition time is `Fri, 23 May 2020 00:00:00 GMT`
+//
+//	e.g. If the object modtime is `Thu May 21 13:42:50 GMT 2020` and the object should
+//	    transition in 1 day, then the expected transition time is `Fri, 23 May 2020 00:00:00 GMT`
 func ExpectedExpiryTime(modTime time.Time, days int) time.Time {
 	t := modTime.UTC().Add(time.Duration(days+1) * 24 * time.Hour)
 	return t.Truncate(24 * time.Hour)

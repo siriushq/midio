@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2016 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 // Package cmd This file implements helper functions to validate Streaming AWS
 // Signature Version '4' authorization header.
 package cmd
@@ -62,7 +46,8 @@ func getChunkSignature(cred auth.Credentials, seedSignature string, region strin
 }
 
 // calculateSeedSignature - Calculate seed signature in accordance with
-//     - http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-streaming.html
+//   - http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-streaming.html
+//
 // returns signature, error otherwise if the signature mismatches or any other
 // error while parsing and validating.
 func calculateSeedSignature(r *http.Request) (cred auth.Credentials, signature string, region string, date time.Time, errCode APIErrorCode) {
@@ -409,7 +394,8 @@ const s3ChunkSignatureStr = ";chunk-signature="
 
 // parses3ChunkExtension removes any s3 specific chunk-extension from buf.
 // For example,
-//     "10000;chunk-signature=..." => "10000", "chunk-signature=..."
+//
+//	"10000;chunk-signature=..." => "10000", "chunk-signature=..."
 func parseS3ChunkExtension(buf []byte) ([]byte, []byte) {
 	buf = trimTrailingWhitespace(buf)
 	semi := bytes.Index(buf, []byte(s3ChunkSignatureStr))

@@ -1,19 +1,3 @@
-/*
- * MinIO Cloud Storage, (C) 2017-2020 MinIO, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package gcs
 
 import (
@@ -1166,7 +1150,7 @@ func (l *gcsGateway) GetMultipartInfo(ctx context.Context, bucket, object, uploa
 	return result, nil
 }
 
-//  ListObjectParts returns all object parts for specified object in specified bucket
+// ListObjectParts returns all object parts for specified object in specified bucket
 func (l *gcsGateway) ListObjectParts(ctx context.Context, bucket string, key string, uploadID string, partNumberMarker int, maxParts int, opts minio.ObjectOptions) (minio.ListPartsInfo, error) {
 	it := l.client.Bucket(bucket).Objects(ctx, &storage.Query{
 		Prefix: path.Join(gcsMinioMultipartPathV1, uploadID),
