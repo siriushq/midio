@@ -15,8 +15,6 @@
 - [Using AssumeRole API](#using-assumerole-api)
 - [Explore Further](#explore-further)
 
-<!-- markdown-toc end -->
-
 ## Introduction
 
 Returns a set of temporary security credentials that you can use to access MinIO resources. AssumeRole requires authorization credentials for an existing user on MinIO. The advantages of this API are
