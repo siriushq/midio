@@ -1,0 +1,135 @@
+{
+    "$schema": "https://mintlify.com/docs.json",
+    "theme": "willow",
+    "name": "midio",
+    "favicon": "docs.favicon.svg",
+    "logo": "docs.logo.png",
+    "colors": {
+        "primary": "#262626",
+        "light": "#808080",
+        "dark": "#090909"
+    },
+    "background": {
+        "color": {
+            "dark": "#000000"
+        }
+    },
+    "appearance": {
+        "default": "dark",
+        "strict": true
+    },
+    "thumbnails": {
+        "appearance": "dark",
+        "background": "docs.thumbnail.png"
+    },
+    "fonts": {
+        "family": "Noto Sans",
+        "weight": 400
+    },
+    "navigation": {
+        "groups": [
+            {
+                "group": "Introduction & Setup",
+                "pages": [
+                    "config",
+                    "docker",
+                    "orchestration",
+                    "orchestration/docker-compose",
+                    "orchestration/docker-swarm",
+                    "orchestration/kubernetes",
+                    "deployment/kernel-tuning",
+                    "tls",
+                    "tls/kubernetes",
+                    "security",
+                    "kms"
+                ]
+            },
+            {
+                "group": "Operations & Observability",
+                "pages": [
+                    "logging",
+                    "metrics",
+                    "metrics/healthcheck",
+                    "metrics/prometheus",
+                    "metrics/prometheus/list",
+                    "metrics/prometheus/grafana",
+                    "limits/minio-limits",
+                    "throttle",
+                    "debugging"
+                ]
+            },
+            {
+                "group": "Data Management",
+                "pages": [
+                    "bucket/lifecycle",
+                    "bucket/versioning",
+                    "bucket/retention",
+                    "bucket/notifications",
+                    "bucket/replication",
+                    "bucket/quota"
+                ]
+            },
+            {
+                "group": "Data Processing",
+                "pages": [
+                    "select",
+                    "bigdata"
+                ]
+            },
+            {
+                "group": "Architecture & Performance",
+                "pages": [
+                    "disk-caching",
+                    "compression",
+                    "erasure",
+                    "erasure/storage-class",
+                    "distributed",
+                    "distributed/sizing",
+                    "distributed/design",
+                    "shared-backend",
+                    "shared-backend/design"
+                ]
+            },
+            {
+                "group": "Gateways & Integrations",
+                "pages": [
+                    "gateway",
+                    "gateway/s3",
+                    "gateway/azure",
+                    "gateway/gcs",
+                    "gateway/hdfs",
+                    "gateway/nas",
+                    "integrations/veeam"
+                ]
+            },
+            {
+                "group": "Federation",
+                "pages": [
+                    "federation/lookup"
+                ]
+            },
+            {
+                "group": "Access Control & Tenancy",
+                "pages": [
+                    "multi-user",
+                    "multi-user/admin",
+                    "multi-tenancy"
+                ]
+            },
+            {
+                "group": "STS & Identity",
+                "pages": [
+                    "sts",
+                    "sts/assume-role",
+                    "sts/client-grants",
+                    "sts/dex",
+                    "sts/etcd",
+                    "sts/keycloak",
+                    "sts/ldap",
+                    "sts/web-identity",
+                    "sts/wso2"
+                ]
+            }
+        ]
+    }
+}
