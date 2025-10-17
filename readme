@@ -5,12 +5,13 @@ siriushq/midio
 	Non-rendered source documentation is available in the "documentation" directory.
 	https://midio.sirius.cam houses the rendered documentation.
 
+	You are required to read [license] and [/attribution/*] before using this software.
+
 	<!> The rendered documentation is currently not public.
 	<!> 1.0-RC1 is not yet published.
 
 	<ⓘ> Contact "midio@mechite.com" for support (more information below...)
 	<ⓘ> It is not a goal of this project to fork the other tools, such as `mc`.
-	<ⓘ> `midio gateway` may be deprecated, if it cannot be easily maintained.
 
 building
 ========
@@ -24,6 +25,14 @@ building
 
 	This produces a runnable binary for the system you are building on.
 	[go generate] will fail if you did not clone the repository maintaining [.git].
+
+	To generate license files, you must ensure both [go] and [GOPATH/bin] are available
+	in your [PATH] environment variable, and then run the following:
+
+	$ go install github.com/google/go-licenses/v2@v2.0.0
+	$ go-licenses report github.com/siriushq/midio \
+		--template ./attribution/license-dependencies.tpl \
+		> ./attribution/license-dependencies.md
 
 contributing
 ============

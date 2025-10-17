@@ -11,15 +11,15 @@ var (
 	GOROOT = "C:/Users/user/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.9.windows-amd64"
 
 	// Version - version time.RFC3339.
-	Version = "2025-10-17T05:39:46Z"
+	Version = "2025-10-17T09:02:03Z"
 
 	// ReleaseTag - release tag in TAG.%Y-%m-%dT%H-%M-%SZ.
-	ReleaseTag = "RELEASE.2025-10-17T05-39-46Z"
+	ReleaseTag = "RELEASE.2025-10-17T09-02-03Z"
 
 	// CommitID - latest commit id.
-	CommitID = "84c7bcebd83c50b61be5921f12fd1d8fc6412433"
+	CommitID = "7e3083be53a90bf184fa4a78942384743f3512d1"
 
 	// ShortCommitID - first 12 characters from CommitID.
-	ShortCommitID = "84c7bcebd83c"
+	ShortCommitID = "7e3083be53a9"
 )
 		
