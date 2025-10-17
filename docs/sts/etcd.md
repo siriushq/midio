@@ -1,4 +1,4 @@
-# etcd V3 Quickstart Guide [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# etcd V3 Quickstart Guide 
 etcd is a distributed key value store that provides a reliable way to store data across a cluster of machines.
 
 ## Get started

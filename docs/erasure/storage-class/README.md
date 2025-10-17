@@ -1,4 +1,4 @@
-# MinIO Storage Class Quickstart Guide [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# MinIO Storage Class Quickstart Guide 
 
 MinIO server supports storage class in erasure coding mode. This allows configurable data and parity disks per object.
 

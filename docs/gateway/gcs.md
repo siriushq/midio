@@ -1,4 +1,4 @@
-# MinIO GCS Gateway [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# MinIO GCS Gateway 
 
 MinIO GCS Gateway allows you to access Google Cloud Storage (GCS) with Amazon S3-compatible APIs
 

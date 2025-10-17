@@ -1,4 +1,4 @@
-# WSO2 Quickstart Guide [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# WSO2 Quickstart Guide 
 WSO2 is an Identity Server open source and is released under Apache Software License Version 2.0, this document covers configuring WSO2 to be used as an identity provider for MinIO server STS API.
 
 ## Get started

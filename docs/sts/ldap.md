@@ -1,8 +1,8 @@
-# AssumeRoleWithLDAPIdentity [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# AssumeRoleWithLDAPIdentity 
 
 **Table of Contents**
 
-- [AssumeRoleWithLDAPIdentity [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)](#assumerolewithldapidentity-slackhttpsslackminioslacktypesvghttpsslackminio)
+- [AssumeRoleWithLDAPIdentity ](#assumerolewithldapidentity-slackhttpsslackminioslacktypesvghttpsslackminio)
     - [Introduction](#introduction)
     - [Configuring AD/LDAP on MinIO](#configuring-adldap-on-minio)
         - [Supported modes of operation](#supported-modes-of-operation)

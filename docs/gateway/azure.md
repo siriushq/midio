@@ -1,4 +1,4 @@
-# MinIO Azure Gateway [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# MinIO Azure Gateway 
 MinIO Gateway adds Amazon S3 compatibility to Microsoft Azure Blob Storage.
 
 ## Run MinIO Gateway for Microsoft Azure Blob Storage

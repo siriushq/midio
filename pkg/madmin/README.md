@@ -1,4 +1,4 @@
-# Golang Admin Client API Reference [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# Golang Admin Client API Reference 
 The MinIO Admin Golang Client SDK provides APIs to manage MinIO services.
 
 This quickstart guide will show you how to install the MinIO Admin client SDK, connect to MinIO admin service, and provide a walkthrough of a simple file uploader.

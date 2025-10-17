@@ -1,4 +1,4 @@
-# MinIO Gateway [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# MinIO Gateway 
 MinIO Gateway adds Amazon S3 compatibility to third party cloud storage providers.
 - [NAS](https://github.com/minio/minio/blob/master/docs/gateway/nas.md)
 - [Microsoft Azure Blob Storage](https://github.com/minio/minio/blob/master/docs/gateway/azure.md)

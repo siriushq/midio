@@ -1,6 +1,6 @@
 *Federation feature is deprecated and should be avoided for future deployments*
 
-# Federation Quickstart Guide [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# Federation Quickstart Guide 
 This document explains how to configure MinIO with `Bucket lookup from DNS` style federation.
 
 ## Get started

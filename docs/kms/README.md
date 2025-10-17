@@ -1,4 +1,4 @@
-# KMS Guide [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# KMS Guide 
 
 MinIO uses a key-management-system (KMS) to support SSE-S3. If a client requests SSE-S3, or auto-encryption is enabled, the MinIO server encrypts each object with an unique object key which is protected by a master key managed by the KMS.
 

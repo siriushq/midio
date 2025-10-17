@@ -1,4 +1,4 @@
-# AssumeRoleWithWebIdentity [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# AssumeRoleWithWebIdentity 
 
 **Table of Contents**
 

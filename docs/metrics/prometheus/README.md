@@ -1,4 +1,4 @@
-# How to monitor MinIO server with Prometheus [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# How to monitor MinIO server with Prometheus 
 
 [Prometheus](https://prometheus.io) is a cloud-native monitoring platform.
 

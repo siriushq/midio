@@ -1,4 +1,4 @@
-# MinIO Security Overview [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# MinIO Security Overview 
 
 ## Server-Side Encryption
 

@@ -1,4 +1,4 @@
-# How to secure access to MinIO on Kubernetes with TLS [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# How to secure access to MinIO on Kubernetes with TLS 
 
 This document explains how to configure MinIO server with TLS certificates on Kubernetes.
 

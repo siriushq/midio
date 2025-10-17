@@ -1,4 +1,4 @@
-# MinIO Admin Multi-user Quickstart Guide [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# MinIO Admin Multi-user Quickstart Guide 
 MinIO supports multiple admin users in addition to default operator credential created during server startup. New admins can be added after server starts up, and server can be configured to deny or allow access to different admin operations for these users. This document explains how to add/remove admin users and modify their access rights.
 
 ## Get started

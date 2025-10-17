@@ -1,4 +1,4 @@
-# How to secure access to MinIO server with TLS [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# How to secure access to MinIO server with TLS 
 
 This guide explains how to configure MinIO Server with TLS certificates on Linux and Windows platforms.
 

@@ -1,4 +1,4 @@
-# MinIO Bucket Notification Guide [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# MinIO Bucket Notification Guide 
 
 Events occurring on objects in a bucket can be monitored using bucket event notifications.
 

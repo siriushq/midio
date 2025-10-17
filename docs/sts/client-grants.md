@@ -1,4 +1,4 @@
-# AssumeRoleWithClientGrants [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io)
+# AssumeRoleWithClientGrants 
 
 **Table of Contents**
 
