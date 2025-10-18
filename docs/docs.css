@@ -15,7 +15,7 @@ button[aria-label="More actions"] {
 
 /* elevate sidebar */
 #sidebar {
-    background: black;
+    background: transparent;
     z-index: 3;
 }
 
