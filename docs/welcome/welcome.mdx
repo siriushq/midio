@@ -36,7 +36,7 @@ export const WelcomeCard = ({ thumbnail, title, description, href }) => (
                 const x = (event.clientX / window.innerWidth - 0.5) * 256;
                 const y = (event.clientY / window.innerHeight - 0.5) * 256;
 
-                text.style.transform = `scale(1.5) translate(-50%, -50%) translate(${x}px, ${y}px)`;
+                text.style.transform = `scale(1.5) translate(-25%, -25%) translate(${x}px, ${y}px)`;
             }
             
             document.addEventListener("mousemove", move);
