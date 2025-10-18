@@ -78,3 +78,14 @@
     width: 150%;
     height: 150%;
 }
+
+@media (min-width: 1024px) {
+
+    .welcome-noise,
+    .welcome-overlay,
+    .welcome-background,
+    .welcome-background-text {
+        left: 19rem;
+        width: calc(100% - 19rem);
+    }
+}

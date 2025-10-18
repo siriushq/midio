@@ -32,6 +32,7 @@ export const WelcomeCard = ({ thumbnail, title, description, href }) => (
             if (!text) return;
 
             function move(event) {
+                if (window.innerWidth < 1024) return;
                 const x = (event.clientX / window.innerWidth - 0.5) * 256;
                 const y = (event.clientY / window.innerHeight - 0.5) * 256;
 
