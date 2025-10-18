@@ -75,8 +75,8 @@
     transition: transform 300ms ease-out;
     transform: translate(-50%, -50%);
 
-    width: 150%;
-    height: 150%;
+    width: 250%;
+    height: 250%;
 }
 
 @media (min-width: 1024px) {
