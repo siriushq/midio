@@ -31,7 +31,8 @@
             {
                 "group": "Introduction & Setup",
                 "pages": [
-                    "config",
+                    "welcome/welcome",
+                    "introduction-setup/configuration",
                     "docker",
                     "orchestration",
                     "orchestration/docker-compose",

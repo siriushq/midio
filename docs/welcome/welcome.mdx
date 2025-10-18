@@ -1,0 +1,111 @@
+---
+icon: "plane"
+mode: "custom"
+title: "Welcome"
+description: "Get started and learn more about our maintained BSD fork of min.io (the high-performance S3-compatible object store)."
+---
+
+export const WelcomeCard = ({ thumbnail, title, description, href }) => (
+    <a className="group cursor-pointer pb-8" href={href}>
+        <img src={thumbnail}
+            className="welcome-card-image"
+            draggable="false"
+            alt=""
+            noZoom/>
+        <h3 className="mt-5 font-medium">{title}</h3>
+        <span className="mt-1.5">{description}</span>
+    </a>
+);
+
+<div className="relative">
+    <div className="welcome-content px-4 py-16 lg:py-36 lg:pb-24 max-w-3xl mx-auto">
+        
+        {/* logo */}
+        <div className="max-w-xl mx-auto text-center">
+            <img src="https://midio.sirius.cam/welcome/welcome-logo.svg"
+                className="inline h-12"
+                draggable="false"
+                alt=""
+                noZoom/>
+        </div>
+        
+        {/* cards */}
+        <div className="px-6 lg:px-0 mt-12 lg:mt-24 grid sm:grid-cols-2 gap-x-6 gap-y-4">
+            <WelcomeCard
+                thumbnail="https://midio.sirius.cam/welcome/introduction-setup.png"
+                title="Introduction & Setup"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                href="/introduction-setup/configuration"/>
+            <WelcomeCard
+                thumbnail="https://midio.sirius.cam/welcome/operations-observability.png"
+                title="Operations & Observability"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                href="/operations-observability/logging"/>
+            <WelcomeCard
+                thumbnail="https://midio.sirius.cam/welcome/data-management.png"
+                title="Data Management"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                href="/data-management/lifecycle"/>
+            <WelcomeCard
+                thumbnail="https://midio.sirius.cam/welcome/data-processing.png"
+                title="Data Processing"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                href="/data-processing/select"/>
+            <WelcomeCard
+                thumbnail="https://midio.sirius.cam/welcome/architecture-performance.png"
+                title="Architecture & Performance"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                href="/architecture-performance/disk-caching"/>
+            <WelcomeCard
+                thumbnail="https://midio.sirius.cam/welcome/gateways-integrations.png"
+                title="Gateways & Integrations"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                href="/gateways-integrations/gateway"/>
+            <WelcomeCard
+                thumbnail="https://midio.sirius.cam/welcome/federation.png"
+                title="Federation"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                href="/federation/lookup"/>
+            <WelcomeCard
+                thumbnail="https://midio.sirius.cam/welcome/access-tenancy.png"
+                title="Access Control & Tenancy"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                href="/access-tenancy/multi-user"/>
+            <WelcomeCard
+                thumbnail="https://midio.sirius.cam/welcome/sts-identity.png"
+                title="STS & Identity"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                href="/sts-identity/sts"/>
+        </div>
+    
+    </div>
+    
+    {/* background */}
+    <div class="welcome-noise"></div>
+    <div class="welcome-overlay"></div>
+
+    <img
+        class="welcome-background-text"
+        src="https://midio.sirius.cam/welcome/welcome-background-text.svg"
+        alt="Sirius Background"
+        draggable="false"
+        ref={text => {
+            if (!text) return;
+
+            function move(event) {
+                const x = (event.clientX / window.innerWidth - 0.5) * 256;
+                const y = (event.clientY / window.innerHeight - 0.5) * 256;
+
+                text.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
+            }
+            
+            document.addEventListener("mousemove", move);
+            return () => document.removeEventListener("mousemove", move);
+        }}/>
+
+    <img
+        class="welcome-background"
+        src="https://midio.sirius.cam/welcome/welcome-background.webp"
+        alt="Sirius Background"
+        draggable="false"/>
+</div>

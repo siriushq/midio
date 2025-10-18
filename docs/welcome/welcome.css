@@ -1,0 +1,75 @@
+.welcome-card-image {
+    display: block;
+    transform: scale(1);
+    transition: filter 150ms ease-out, transform 150ms ease-out
+}
+.welcome-card-image:hover {
+    transform: scale(1.05);
+    filter: invert(1) hue-rotate(180deg) brightness(0.7)
+}
+.welcome-card-image:active {
+    transform: scale(0.95);
+}
+
+.welcome-content {
+    z-index: 3;
+}
+
+.welcome-noise {
+    position: absolute;
+    z-index: 2;
+
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+
+    background-image: url("https://midio.sirius.cam/welcome/welcome-noise.png");
+    background-repeat: repeat;
+    background-size: auto;
+}
+.welcome-overlay {
+    position: absolute;
+    z-index: 1;
+
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 100%;
+
+    backdrop-filter: blur(10px);
+}
+
+.welcome-background {
+    display: block;
+    position: absolute;
+
+    object-fit: cover;
+    opacity: 0.2;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+}
+.welcome-background-text {
+    display: block;
+    position: absolute;
+    z-index: 2;
+
+    object-fit: cover;
+    opacity: 0.2;
+
+    top: 50%;
+    left: 50%;
+
+    transition: transform 300ms ease-out;
+    transform: translate(-50%, -50%);
+
+    width: 150%;
+    height: 150%;
+}

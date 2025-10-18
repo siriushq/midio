@@ -1,0 +1,14 @@
+/* disable pagination on head/tail pages */
+#pagination:has(> :only-child) {
+    display: none
+}
+
+/* hide mobile menu button (has no content) */
+button[aria-label="More actions"] {
+    display: none
+}
+
+/* make navigation logo taller */
+.nav-logo {
+    height: 5rem
+}
