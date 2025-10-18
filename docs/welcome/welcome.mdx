@@ -18,6 +18,36 @@ export const WelcomeCard = ({ thumbnail, title, description, href }) => (
 );
 
 <div className="relative">
+    {/* background */}
+    <div class="welcome-noise"></div>
+    <div class="welcome-overlay"></div>
+    <img
+        class="welcome-background-text"
+        src="https://midio.sirius.cam/welcome/welcome-background-text.svg"
+        alt="Sirius Background"
+        draggable="false"
+        noZoom
+        ref={text => {
+            if (!text) return;
+
+            function move(event) {
+                const x = (event.clientX / window.innerWidth - 0.5) * 256;
+                const y = (event.clientY / window.innerHeight - 0.5) * 256;
+
+                text.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
+            }
+            
+            document.addEventListener("mousemove", move);
+            return () => document.removeEventListener("mousemove", move);
+        }}/>
+    <img
+        class="welcome-background"
+        src="https://midio.sirius.cam/welcome/welcome-background.webp"
+        alt="Sirius Background"
+        draggable="false"
+        noZoom/>
+
+    {/* content */}
     <div className="welcome-content px-4 py-16 lg:py-36 lg:pb-24 max-w-3xl mx-auto">
         
         {/* logo */}
@@ -79,35 +109,4 @@ export const WelcomeCard = ({ thumbnail, title, description, href }) => (
         </div>
     
     </div>
-    
-    {/* background */}
-    <div class="welcome-noise"></div>
-    <div class="welcome-overlay"></div>
-
-    <img
-        class="welcome-background-text"
-        src="https://midio.sirius.cam/welcome/welcome-background-text.svg"
-        alt="Sirius Background"
-        draggable="false"
-        noZoom
-        ref={text => {
-            if (!text) return;
-
-            function move(event) {
-                const x = (event.clientX / window.innerWidth - 0.5) * 256;
-                const y = (event.clientY / window.innerHeight - 0.5) * 256;
-
-                text.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
-            }
-            
-            document.addEventListener("mousemove", move);
-            return () => document.removeEventListener("mousemove", move);
-        }}/>
-
-    <img
-        class="welcome-background"
-        src="https://midio.sirius.cam/welcome/welcome-background.webp"
-        alt="Sirius Background"
-        draggable="false"
-        noZoom/>
 </div>

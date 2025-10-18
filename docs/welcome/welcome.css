@@ -54,7 +54,8 @@
 .welcome-background {
     display: block;
     position: absolute;
-
+    z-index: 0;
+    
     object-fit: cover;
     opacity: 0.2;
 
