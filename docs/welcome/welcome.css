@@ -13,18 +13,14 @@
 
 .welcome-content {
     display: block;
-    position: absolute;
+    position: relative;
     z-index: 3;
-
-    top: 96px;
-    left: 50%;
-    transform: translateX(-50%);
 
     text-align: center;
 }
 
 .welcome-noise {
-    position: absolute;
+    position: fixed;
     z-index: 2;
 
     top: 0;
@@ -39,7 +35,7 @@
     background-size: auto;
 }
 .welcome-overlay {
-    position: absolute;
+    position: fixed;
     z-index: 1;
 
     top: 0;
@@ -53,9 +49,9 @@
 
 .welcome-background {
     display: block;
-    position: absolute;
+    position: fixed;
     z-index: 0;
-    
+
     object-fit: cover;
     opacity: 0.2;
 
@@ -67,7 +63,7 @@
 }
 .welcome-background-text {
     display: block;
-    position: absolute;
+    position: fixed;
     z-index: 2;
 
     object-fit: cover;
