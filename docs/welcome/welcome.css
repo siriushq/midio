@@ -12,7 +12,15 @@
 }
 
 .welcome-content {
+    display: block;
+    position: absolute;
     z-index: 3;
+
+    top: 96px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    text-align: center;
 }
 
 .welcome-noise {

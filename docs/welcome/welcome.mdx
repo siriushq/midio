@@ -89,6 +89,7 @@ export const WelcomeCard = ({ thumbnail, title, description, href }) => (
         src="https://midio.sirius.cam/welcome/welcome-background-text.svg"
         alt="Sirius Background"
         draggable="false"
+        noZoom
         ref={text => {
             if (!text) return;
 
@@ -107,5 +108,6 @@ export const WelcomeCard = ({ thumbnail, title, description, href }) => (
         class="welcome-background"
         src="https://midio.sirius.cam/welcome/welcome-background.webp"
         alt="Sirius Background"
-        draggable="false"/>
+        draggable="false"
+        noZoom/>
 </div>
