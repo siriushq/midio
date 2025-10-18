@@ -12,3 +12,14 @@ button[aria-label="More actions"] {
 .nav-logo {
     height: 5rem
 }
+
+/* elevate sidebar */
+#sidebar {
+    background: black;
+    z-index: 3;
+}
+
+/* hide language picker */
+#sidebar > ul {
+    display: none;
+}
