@@ -83,8 +83,7 @@
 
     .welcome-noise,
     .welcome-overlay,
-    .welcome-background,
-    .welcome-background-text {
+    .welcome-background {
         left: 19rem;
         width: calc(100% - 19rem);
     }
