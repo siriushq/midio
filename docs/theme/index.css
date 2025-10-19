@@ -37,10 +37,13 @@ button[aria-label="More actions"] {
 #search-bar-entry svg {
     color: white;
 }
-/* sidebar - hide webkit scrollbar, virtual scrolling space */
+/* sidebar - virtual scrolling space */
 #sidebar-content {
-    display: none;
     padding-bottom: 40rem;
+}
+/* sidebar - hide webkit scrollbar */
+#sidebar-content::-webkit-scrollbar {
+    display: none;
 }
 
 /* content area - above background */
