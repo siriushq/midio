@@ -42,6 +42,11 @@ button[aria-label="More actions"] {
     color: white;
 }
 
+/* content area - above background */
+#content-container {
+    z-index: 4;
+}
+
 /* background - overlay effects and image */
 .background-noise {
     position: fixed;
