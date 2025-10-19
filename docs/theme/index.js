@@ -4,6 +4,6 @@ if (!current || current.type === "module") throw new Error();
 fetch("https://midio.sirius.cam/theme/index.mjs").then(contents => {
     const element = document.createElement("script");
     element.type = "module";
-    element.innerHTML = contents;
+    element.innerHTML = contents.text();
     current.insertAdjacentElement("afterend", element);
 })
