@@ -1,5 +1,5 @@
 const current = document.currentScript;
-if (!currentScript || currentScript.type === "module") throw new Error();
+if (!current || current.type === "module") throw new Error();
 
 fetch("https://midio.sirius.cam/theme/index.mjs").then(contents => {
     const element = document.createElement("script");
