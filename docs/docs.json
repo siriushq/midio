@@ -2,8 +2,8 @@
     "$schema": "https://mintlify.com/docs.json",
     "theme": "willow",
     "name": "midio",
-    "favicon": "docs.favicon.svg",
-    "logo": "docs.logo.png",
+    "favicon": "/theme/favicon.svg",
+    "logo": "/theme/logo.png",
     "colors": {
         "primary": "#262626",
         "light": "#808080",
@@ -20,11 +20,17 @@
     },
     "thumbnails": {
         "appearance": "dark",
-        "background": "docs.thumbnail.png"
+        "background": "/theme/thumbnail.png"
     },
     "fonts": {
-        "family": "Noto Sans",
-        "weight": 400
+        "heading": {
+            "family": "Audiowide",
+            "weight": 400
+        },
+        "body": {
+            "family": "Noto Sans",
+            "weight": 400
+        }
     },
     "navigation": {
         "groups": [

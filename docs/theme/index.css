@@ -1,0 +1,73 @@
+/* disable pagination on head/tail pages */
+#pagination:has(> :only-child) {
+    display: none
+}
+
+/* hide mobile menu button (has no content) */
+button[aria-label="More actions"] {
+    display: none
+}
+
+/* make navigation logo taller */
+.nav-logo {
+    height: 5rem
+}
+
+/* sidebar - elevate, make transparent */
+#sidebar {
+    background: transparent;
+    z-index: 3;
+}
+/* sidebar - hide language picker */
+#sidebar > ul {
+    display: none;
+}
+/* sidebar - search box */
+#search-bar-entry {
+    background: transparent;
+    border: white 2px solid;
+    color: white;
+}
+
+/* background - overlay effects and image */
+.background-noise {
+    position: fixed;
+    z-index: 2;
+
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+
+    background-image: url("https://midio.sirius.cam/theme/noise.png");
+    background-repeat: repeat;
+    background-size: auto;
+}
+.background-filter {
+    position: fixed;
+    z-index: 1;
+
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 100%;
+
+    backdrop-filter: blur(10px);
+}
+.background {
+    display: block;
+    position: fixed;
+    z-index: 0;
+
+    object-fit: cover;
+    opacity: 0.2;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+}
