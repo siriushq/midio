@@ -1,26 +1,9 @@
-import SimpleBar from "https://esm.run/simplebar";
-import "https://esm.run/simplebar/dist/simplebar.css";
+const current = document.currentScript;
+if (!currentScript || currentScript.type === "module") throw new Error();
 
-import ResizeObserver from "https://esm.run/resize-observer-polyfill";
-window.ResizeObserver = ResizeObserver;
-
-
-const sidebar = document.getElementById("sidebar");
-new SimpleBar(sidebar);
-
-const noise = document.createElement("div");
-noise.className = "background-noise";
-
-const overlay = document.createElement("div");
-overlay.className = "background-filter";
-
-const image = document.createElement("img");
-image.className = "background";
-image.src = "https://midio.sirius.cam/theme/background.webp";
-image.draggable = false;
-
-const marker = document.querySelector(`a[href="#content-area"]`);
-if (!marker) throw new Error("could not apply background style");
-marker.insertAdjacentElement("afterend", image);
-marker.insertAdjacentElement("afterend", overlay);
-marker.insertAdjacentElement("afterend", noise);
+fetch("https://midio.sirius.cam/theme/index.mjs").then(contents => {
+    const element = document.createElement("script");
+    element.type = "module";
+    element.innerHTML = contents;
+    current.insertAdjacentElement("afterend", element);
+})
