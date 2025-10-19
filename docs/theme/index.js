@@ -1,13 +1,13 @@
 const script = `
-import SimpleBar from "https://esm.run/simplebar";
-import "https://esm.run/simplebar/dist/simplebar.css";
+// import SimpleBar from "https://esm.run/simplebar";
+// import "https://esm.run/simplebar/dist/simplebar.css";
 
-import ResizeObserver from "https://esm.run/resize-observer-polyfill";
-window.ResizeObserver = ResizeObserver;
+// import ResizeObserver from "https://esm.run/resize-observer-polyfill";
+// window.ResizeObserver = ResizeObserver;
 
 
-const sidebar = document.getElementById("sidebar");
-new SimpleBar(sidebar);
+// const sidebar = document.getElementById("sidebar");
+// new SimpleBar(sidebar);
 
 const noise = document.createElement("div");
 noise.className = "background-noise";

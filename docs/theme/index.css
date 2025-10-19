@@ -13,10 +13,17 @@ button[aria-label="More actions"] {
     height: 5rem
 }
 
-/* sidebar - elevate, make transparent */
+/* sidebar - elevate, make transparent, fade elements towards bottom, hide mozilla scrollbars */
 #sidebar {
     background: transparent;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
     z-index: 3;
+
+    scrollbar-width: none;
+}
+/* sidebar - hide webkit scrollbar */
+#sidebar::-webkit-scrollbar {
+    display: none;
 }
 /* sidebar - hide language picker */
 #sidebar > ul {
@@ -26,6 +33,12 @@ button[aria-label="More actions"] {
 #search-bar-entry {
     background: transparent;
     border: white 2px solid;
+    color: white;
+
+    font-family: "Audiowide", sans-serif;
+}
+/* sidebar - search box icon */
+#search-bar-entry svg {
     color: white;
 }
 

@@ -46,6 +46,6 @@
     bottom: 0;
 
     right: 0;
-    width: calc(100vw - 19rem);
+    width: calc(100vw - calc(19rem + 1rem));
     overflow: hidden;
 }
