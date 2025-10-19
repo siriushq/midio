@@ -21,11 +21,6 @@ button[aria-label="More actions"] {
 
     scrollbar-width: none;
 }
-/* sidebar - hide webkit scrollbar */
-#sidebar::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-}
 /* sidebar - hide language picker */
 #sidebar > ul {
     display: none;
@@ -42,8 +37,9 @@ button[aria-label="More actions"] {
 #search-bar-entry svg {
     color: white;
 }
-/* sidebar - virtual scrolling space */
+/* sidebar - hide webkit scrollbar, virtual scrolling space */
 #sidebar-content {
+    display: none;
     padding-bottom: 40rem;
 }
 
