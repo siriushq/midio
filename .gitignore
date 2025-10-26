@@ -1,24 +1,39 @@
-**/*.swp
-cover.out
+# OS / Editor files
+.DS_Store
+*.swp
 *~
+**/*.sublime-workspace
+.vscode/
+.idea/
+
+# Build / Binary artifacts
 midio
 midio.exe
-!*/
-site/
-**/*.test
-**/*.sublime-workspace
-/.idea/
-**/access.log
-vendor/**/*.js
-vendor/**/*.json
-release
-.DS_Store
 *.syso
-coverage.txt
-.vscode/
 *.tar.bz2
+release
+
+# Generated files
+cmd/build-constants.go
+
+# Logs and temporary files
+**/access.log
+.sia_temp/
+coverage.txt
+cover.out
+config.json
+
+# Tests
+**/*.test
+
+# Other
 parts/
 prime/
 stage/
-.sia_temp/
-config.json
+site/
+
+vendor/**/*.js
+vendor/**/*.json
+
+# Ignore everything except directories (keep structure)
+!*/
