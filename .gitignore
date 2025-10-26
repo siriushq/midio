@@ -13,6 +13,10 @@ midio.exe
 *.tar.bz2
 release
 
+# go-wrapper
+.go/wrapper/*
+!.go/wrapper/go-wrapper.properties
+
 # Generated files
 cmd/build-constants.go
 
