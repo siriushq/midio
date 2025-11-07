@@ -46,13 +46,17 @@ export const WelcomeCard = ({ thumbnail, title, description, href }) => (
     <div className="welcome-content px-4 py-16 lg:py-36 lg:pb-24 max-w-3xl mx-auto">
         
         {/* logo */}
-        <div className="max-w-xl mx-auto text-center">
+        <div className="max-w-xl mx-auto text-center pb-12">
             <img src="https://midio.sirius.cam/welcome/welcome-logo.svg"
                 className="inline h-32"
                 draggable="false"
                 alt=""
                 noZoom/>
         </div>
+
+        {/* notice */}
+        This documentation website is a work-in-progress and
+        <br>none of the information is correct or up-to-date.
         
         {/* cards */}
         <div className="px-6 lg:px-0 mt-12 lg:mt-24 grid sm:grid-cols-2 gap-x-6 gap-y-4">
