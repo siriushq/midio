@@ -9,6 +9,14 @@
 package main
 
 // #include <stdlib.h>
+//
+// typedef void* midio_builder;
+// typedef void* midio_server;
+// typedef void (*midio_thread_closure)();
+//
+// static inline void __midio_call_closure(midio_thread_closure closure) {
+//  	closure();
+// }
 import "C"
 
 import (
@@ -34,10 +42,10 @@ func main() {
 	}
 }
 
-// MidioBuilder
+// MidioFlags
 // A holder object for flags provided when using the below building functions.
 // Some are unused depending on whether a `server`, `gateway s3`, `gateway aws`, etc., is built.
-type MidioBuilder struct {
+type MidioFlags struct {
 	Volumes []string
 
 	Address   string
@@ -66,39 +74,39 @@ func midio_version() *C.char {
 }
 
 //export midio_create
-func midio_create() *C.void {
-	builder := &MidioBuilder{}
-	return (*C.void)(unsafe.Pointer(builder))
+func midio_create() *C.midio_builder {
+	builder := &MidioFlags{}
+	return (*C.midio_builder)(unsafe.Pointer(builder))
 }
 
 //export midio_volume
-func midio_volume(pointer *C.void, path *C.char) {
-	builder := (*MidioBuilder)(unsafe.Pointer(pointer))
-	builder.Volumes = append(builder.Volumes, C.GoString(path))
+func midio_volume(builder *C.midio_builder, path *C.char) {
+	flags := (*MidioFlags)(unsafe.Pointer(builder))
+	flags.Volumes = append(flags.Volumes, C.GoString(path))
 }
 
 //export midio_certificates
-func midio_certificates(pointer *C.void, directory *C.char) {
-	builder := (*MidioBuilder)(unsafe.Pointer(pointer))
-	builder.CertsDir = C.GoString(directory)
+func midio_certificates(builder *C.midio_builder, directory *C.char) {
+	flags := (*MidioFlags)(unsafe.Pointer(builder))
+	flags.CertsDir = C.GoString(directory)
 }
 
 //export midio_address
-func midio_address(pointer *C.void, address *C.char) {
-	builder := (*MidioBuilder)(unsafe.Pointer(pointer))
-	builder.Address = C.GoString(address)
+func midio_address(builder *C.midio_builder, address *C.char) {
+	flags := (*MidioFlags)(unsafe.Pointer(builder))
+	flags.Address = C.GoString(address)
 }
 
 //export midio_quiet
-func midio_quiet(pointer *C.void) {
-	builder := (*MidioBuilder)(unsafe.Pointer(pointer))
-	builder.Quiet = true
+func midio_quiet(builder *C.midio_builder) {
+	flags := (*MidioFlags)(unsafe.Pointer(builder))
+	flags.Quiet = true
 }
 
 //export midio_anonymous
-func midio_anonymous(pointer *C.void) {
-	builder := (*MidioBuilder)(unsafe.Pointer(pointer))
-	builder.Anonymous = true
+func midio_anonymous(builder *C.midio_builder) {
+	flags := (*MidioFlags)(unsafe.Pointer(builder))
+	flags.Anonymous = true
 }
 
 // Consume a message, block until another one is available.
@@ -111,28 +119,37 @@ func midio_message() *C.char {
 	return C.CString(message)
 }
 
+// Run the provided function pointer in a goroutine.
+// This is a simple, managed and cross-platform alternative to managing threads
+// directly, which may be favourable depending on your usage environment.
+//
+//export midio_thread
+func midio_thread(closure *C.midio_thread_closure) {
+	go C.__midio_call_closure(*closure)
+}
+
 // Entry point for `midio server` in shared-library build, returning a closeable resource.
 //
-//export midio_server
-func midio_server(pointer *C.void) *C.void {
-	builder := (*MidioBuilder)(unsafe.Pointer(pointer))
+//export midio_create_server
+func midio_create_server(builder *C.midio_builder) *C.midio_server {
+	flags := (*MidioFlags)(unsafe.Pointer(builder))
 	arguments := []string{"server"}
 
 	logger.EnableShared(MidioChannel)
-	if builder.Address != "" {
-		arguments = append(arguments, "--address", builder.Address)
+	if flags.Address != "" {
+		arguments = append(arguments, "--address", flags.Address)
 	}
-	if builder.CertsDir != "" {
-		arguments = append(arguments, "--certs-dir", builder.CertsDir)
+	if flags.CertsDir != "" {
+		arguments = append(arguments, "--certs-dir", flags.CertsDir)
 	}
-	if builder.Quiet {
+	if flags.Quiet {
 		arguments = append(arguments, "--quiet")
 	}
-	if builder.Anonymous {
+	if flags.Anonymous {
 		arguments = append(arguments, "--anonymous")
 	}
 
-	for _, volume := range builder.Volumes {
+	for _, volume := range flags.Volumes {
 		arguments = append(arguments, volume)
 	}
 
@@ -144,12 +161,12 @@ func midio_server(pointer *C.void) *C.void {
 	}()
 
 	server := &MidioServer{App: app}
-	return (*C.void)(unsafe.Pointer(server))
+	return (*C.midio_server)(unsafe.Pointer(server))
 }
 
 //export midio_close
-func midio_close(pointer *C.void) {
-	server := (*MidioServer)(unsafe.Pointer(pointer))
+func midio_close(builder *C.midio_server) {
+	server := (*MidioServer)(unsafe.Pointer(builder))
 	if server.App != nil {
 		// TODO - use App in the future, for now just send interrupt
 		// on Windows, we catch and ignore SIGINT error, then throw SIGKILL
