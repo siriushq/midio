@@ -143,10 +143,10 @@ func midio_create_server(builder *C.midio_builder) *C.midio_server {
 		arguments = append(arguments, "--certs-dir", flags.CertsDir)
 	}
 	if flags.Quiet {
-		arguments = append(arguments, "--quiet")
+		logger.EnableQuiet()
 	}
 	if flags.Anonymous {
-		arguments = append(arguments, "--anonymous")
+		logger.EnableAnonymous()
 	}
 
 	for _, volume := range flags.Volumes {
