@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 
 import io
 import os
