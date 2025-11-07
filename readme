@@ -23,7 +23,7 @@ building
 	$ git clone --recursive git@github.com:siriushq/midio.git
 	$ cd midio
 	$ gow generate
-	$ gow build
+	$ gow build -ldflags="-s -w"
 
 	This produces a runnable binary for the system you are building on.
 	[gow generate] will fail if you did not clone the repository maintaining [.git].
@@ -37,9 +37,11 @@ building
 	====================================================================================
 
 	building as shared library =========================================================
-	on Windows, run [gow build --buildmode=c-shared -o minio.dll].
-	on Linux, run [gow build --buildmode=c-shared -o minio.so].
-	on Mac, run [gow build --buildmode=c-shared -o minio.dylib].
+	first, run [gow generate]. then...
+
+	for Windows, run [gow build -ldflags="-s -w" --buildmode=c-shared -o midio.dll].
+	for Linux, run [gow build -ldflags="-s -w" --buildmode=c-shared -o midio.so].
+	for Mac, run [gow build -ldflags="-s -w" --buildmode=c-shared -o midio.dylib].
 
 	...and then use your C toolchain to link against it, using the generated header.
 	====================================================================================
