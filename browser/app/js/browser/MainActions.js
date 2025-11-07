@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 import React from "react"
 import { connect } from "react-redux"
 import { Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap"

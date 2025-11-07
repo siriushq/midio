@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 // File for all the browser constants.
 
 // minioBrowserPrefix absolute path.

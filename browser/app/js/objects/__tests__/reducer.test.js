@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 import reducer from "../reducer"
 import * as actions from "../actions"
 import { SORT_ORDER_ASC, SORT_BY_NAME } from "../../constants"

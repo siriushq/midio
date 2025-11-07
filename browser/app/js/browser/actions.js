@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 import web from "../web"
 
 export const TOGGLE_SIDEBAR = "common/TOGGLE_SIDEBAR"

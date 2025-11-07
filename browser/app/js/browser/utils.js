@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 export const OPEN_ID_NONCE_KEY = 'openIDKey'
 
 export const buildOpenIDAuthURL = (authEp, authScopes, redirectURI, clientID, nonce) => {

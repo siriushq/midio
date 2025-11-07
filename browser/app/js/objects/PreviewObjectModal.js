@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 import React from "react"
 import { Modal, ModalHeader, ModalBody } from "react-bootstrap"
 
