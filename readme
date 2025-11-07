@@ -34,6 +34,8 @@ building
 	$ go-licenses report github.com/siriushq/midio \
 		--template ./attribution/license-dependencies.tpl \
 		> ./attribution/license-dependencies.md
+
+	...swapping line continuation for the shell you are building with.
 	====================================================================================
 
 	building as shared library =========================================================
