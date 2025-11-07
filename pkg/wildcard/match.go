@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package wildcard
 
 // MatchSimple - finds whether the text matches/satisfies the pattern string.

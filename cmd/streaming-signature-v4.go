@@ -1,5 +1,6 @@
 // Package cmd This file implements helper functions to validate Streaming AWS
 // Signature Version '4' authorization header.
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package cmd
 
 import (

@@ -1,6 +1,7 @@
 //go:build ignore
 // +build ignore
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package s3select
 
 import (

@@ -86,6 +86,7 @@
 // Further, some clients require that the ETag value is a double-quoted
 // string. Therefore, this package provides dedicated functions for
 // adding and extracing the ETag to/from HTTP headers.
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package etag
 
 import (

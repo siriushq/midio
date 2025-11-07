@@ -1,6 +1,7 @@
 //go:build darwin || freebsd || dragonfly || openbsd || solaris
 // +build darwin freebsd dragonfly openbsd solaris
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package disk
 
 // getFSType returns the filesystem type of the underlying mounted filesystem

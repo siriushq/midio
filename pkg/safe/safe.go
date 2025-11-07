@@ -1,5 +1,6 @@
 // NOTE - Rename() not guaranteed to be safe on all filesystems which are not fully POSIX compatible
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package safe
 
 import (

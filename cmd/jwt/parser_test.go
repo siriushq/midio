@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package jwt
 
 // This file is a re-implementation of the original code here with some

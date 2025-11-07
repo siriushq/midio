@@ -1,4 +1,5 @@
 // Package console implements console printing helpers
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package console
 
 import (

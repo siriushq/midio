@@ -1,6 +1,7 @@
 //go:build linux || darwin || dragonfly || freebsd || netbsd || openbsd
 // +build linux darwin dragonfly freebsd netbsd openbsd
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package cmd
 
 import (

@@ -1,6 +1,7 @@
 //go:build linux
 // +build linux
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 /*
  * This file has been adopted and then modified from Daniel Swarbrick's smart
  * project residing at https://github.com/dswarbrick/smart

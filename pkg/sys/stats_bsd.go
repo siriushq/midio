@@ -1,6 +1,7 @@
 //go:build openbsd || freebsd || dragonfly
 // +build openbsd freebsd dragonfly
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package sys
 
 import (

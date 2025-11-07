@@ -6,6 +6,7 @@
 
 //go:generate go run main_build.go
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package main
 
 // #include <stdlib.h>

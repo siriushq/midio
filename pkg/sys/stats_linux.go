@@ -1,6 +1,7 @@
 //go:build linux && !arm && !386
 // +build linux,!arm,!386
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package sys
 
 import (

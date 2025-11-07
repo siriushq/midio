@@ -95,4 +95,5 @@
 //     -   ObjectKey := DAREv2_Dec(KeyEncKey, SealedKey)
 //     - object_data := DAREv2_Dec(ObjectKey, enc_object_data)
 //     Output: object_data
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package crypto

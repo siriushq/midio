@@ -1,6 +1,7 @@
 //go:build (linux && !appengine) || darwin || freebsd || netbsd || openbsd
 // +build linux,!appengine darwin freebsd netbsd openbsd
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package cmd
 
 import (

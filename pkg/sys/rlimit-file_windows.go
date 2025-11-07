@@ -1,6 +1,7 @@
 //go:build windows
 // +build windows
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package sys
 
 // GetMaxOpenFileLimit - returns maximum file descriptor number that can be opened by this process.

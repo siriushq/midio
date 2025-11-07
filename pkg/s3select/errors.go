@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package s3select
 
 // SelectError - represents s3 select error specified in
