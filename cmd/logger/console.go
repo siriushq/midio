@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package logger
 
 import (
@@ -65,7 +66,6 @@ func (f fatalMsg) json(msg string, args ...interface{}) {
 	fmt.Println(string(logJSON))
 
 	os.Exit(1)
-
 }
 
 func (f fatalMsg) quiet(msg string, args ...interface{}) {

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 import { createStore, applyMiddleware } from "redux"
 import thunkMiddleware from "redux-thunk"
 import reducers from "../reducers"

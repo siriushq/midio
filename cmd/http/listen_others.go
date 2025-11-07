@@ -1,6 +1,7 @@
 //go:build windows || plan9 || solaris
 // +build windows plan9 solaris
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package http
 
 import "net"

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 import { minioBrowserPrefix, SORT_ORDER_DESC } from "./constants.js"
 
 export const sortObjectsByName = (objects, order) => {

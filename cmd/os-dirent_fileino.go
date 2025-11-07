@@ -1,6 +1,7 @@
 //go:build freebsd || openbsd || netbsd
 // +build freebsd openbsd netbsd
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package cmd
 
 import "syscall"

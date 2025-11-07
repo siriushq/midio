@@ -8,6 +8,7 @@
 // modified to be used with MinIO under Apache
 // 2.0 license that can be found in the LICENSE file.
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package rpc
 
 import (

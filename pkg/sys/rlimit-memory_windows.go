@@ -1,6 +1,7 @@
 //go:build windows
 // +build windows
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package sys
 
 // GetMaxMemoryLimit - returns the maximum size of the process's virtual memory (address space) in bytes.

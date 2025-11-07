@@ -1,5 +1,6 @@
 // Package lock - implements filesystem locking wrappers around an
 // open file descriptor.
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package lock
 
 import (

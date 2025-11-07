@@ -16,23 +16,45 @@ siriushq/midio
 building
 ========
 
-	The preferred environment uses Git and Go >1.25.
+	building binary ====================================================================
+	The preferred environment uses Git and Go >1.16.
+	Go distribution is provided by go-wrapper <git@github.com:furkilic/go-wrapper>.
 
 	$ git clone --recursive git@github.com:siriushq/midio.git
 	$ cd midio
-	$ go generate
-	$ go build
+	$ gow generate
+	$ gow build -ldflags="-s -w"
 
 	This produces a runnable binary for the system you are building on.
-	[go generate] will fail if you did not clone the repository maintaining [.git].
+	[gow generate] will fail if you did not clone the repository maintaining [.git].
+	====================================================================================
 
-	To generate license files, you must ensure both [go] and [GOPATH/bin] are available
-	in your [PATH] environment variable, and then run the following:
-
-	$ go install github.com/google/go-licenses/v2@v2.0.0
+	building licenses ==================================================================
+	$ gow install github.com/google/go-licenses/v2@v2.0.0
 	$ go-licenses report github.com/siriushq/midio \
 		--template ./attribution/license-dependencies.tpl \
 		> ./attribution/license-dependencies.md
+
+	...swapping line continuation for the shell you are building with.
+	====================================================================================
+
+	building as shared library =========================================================
+	first, run [gow generate]. then...
+
+	for Windows, run [gow build -ldflags="-s -w" --buildmode=c-shared -o midio.dll].
+	for Linux, run [gow build -ldflags="-s -w" --buildmode=c-shared -o midio.so].
+	for Mac, run [gow build -ldflags="-s -w" --buildmode=c-shared -o midio.dylib].
+
+	...and then use your C toolchain to link against it, using the generated header.
+	====================================================================================
+
+	building documentation =============================================================
+	As mentioned above, the documentation is automatically built on the master branch.
+	For a local preview server, install Bun and run the following from source root:
+
+	$ cd docs
+	$ bunx mint dev
+	====================================================================================
 
 contributing
 ============
@@ -58,6 +80,9 @@ licensing
 	This project is licensed under the 3-Clause BSD.
 	This is being done at our loss. Consider starring this repository and/or buying our
 	products to support the development and future of this project.
+
+	Some portions of this project are adapted from projects with other licenses, licenses
+	are clearly marked with `SPDX-License-Identifier` AND declared in `/attribution/*`.
 
 support
 =======

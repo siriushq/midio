@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package console
 
 import (
@@ -35,6 +36,14 @@ func (c *Target) Send(e interface{}, logKind string) error {
 	entry, ok := e.(log.Entry)
 	if !ok {
 		return fmt.Errorf("Uexpected log entry structure %#v", e)
+	}
+	if logger.IsShared() {
+		logJSON, err := json.Marshal(&entry)
+		if err != nil {
+			return err
+		}
+		logger.GetSharedChannel() <- string(logJSON)
+		return nil
 	}
 	if logger.IsJSON() {
 		logJSON, err := json.Marshal(&entry)

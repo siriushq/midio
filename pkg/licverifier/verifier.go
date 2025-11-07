@@ -1,4 +1,5 @@
 // Package licverifier implements a simple library to verify MinIO Subnet license keys.
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package licverifier
 
 import (

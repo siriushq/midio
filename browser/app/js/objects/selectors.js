@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 import { createSelector } from "reselect"
 
 export const getCurrentPrefix = state => state.objects.currentPrefix

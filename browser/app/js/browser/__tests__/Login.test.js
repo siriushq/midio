@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 import React from "react"
 import { shallow, mount } from "enzyme"
 import { Login } from "../Login"

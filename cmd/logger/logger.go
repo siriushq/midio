@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package logger
 
 import (
@@ -85,10 +86,19 @@ func (level Level) String() string {
 
 // quietFlag: Hide startup messages if enabled
 // jsonFlag: Display in JSON format, if enabled
+//
+// sharedFlag: Enabled when running as shared library
+// sharedChannel: Channel used for shared library message dispatch
+//
+// errorFmtFunc: Custom function to format error
 var (
-	quietFlag, jsonFlag, anonFlag bool
-	// Custom function to format error
-	errorFmtFunc func(string, error, bool) string
+	quietFlag,
+	jsonFlag,
+	sharedFlag,
+	anonFlag bool
+
+	sharedChannel chan string
+	errorFmtFunc  func(string, error, bool) string
 )
 
 // EnableQuiet - turns quiet option on.
@@ -102,6 +112,13 @@ func EnableJSON() {
 	quietFlag = true
 }
 
+// EnableShared - outputs logs to be consumed by shared library build
+func EnableShared(channel chan string) {
+	jsonFlag = true
+	sharedFlag = true
+	sharedChannel = channel
+}
+
 // EnableAnonymous - turns anonymous flag
 // to avoid printing sensitive information.
 func EnableAnonymous() {
@@ -113,9 +130,20 @@ func IsJSON() bool {
 	return jsonFlag
 }
 
+// IsShared - returns true if sharedFlag is true
+func IsShared() bool {
+	return sharedFlag
+}
+
 // IsQuiet - returns true if quietFlag is true
 func IsQuiet() bool {
 	return quietFlag
+}
+
+// GetSharedChannel - return the logging channel to be used for
+// shared library build consumption
+func GetSharedChannel() chan string {
+	return sharedChannel
 }
 
 // RegisterError registers the specified rendering function. This latter

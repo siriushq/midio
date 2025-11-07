@@ -1,4 +1,5 @@
 // Package madmin_test
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package madmin_test
 
 import (

@@ -1,6 +1,7 @@
 //go:build linux && !s390x && !arm && !386
 // +build linux,!s390x,!arm,!386
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package disk
 
 import "strconv"

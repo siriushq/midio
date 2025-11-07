@@ -1,5 +1,6 @@
 // Package trie implements a simple trie tree for minio server/tools borrows
 // idea from - https://godoc.org/golang.org/x/text/internal/triegen.
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package trie
 
 // Node trie tree node container carries value and children.

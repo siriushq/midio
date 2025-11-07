@@ -2,6 +2,7 @@
 
 // Package mimedb is a database of file extension to mime content-type.
 // Definitions are imported from NodeJS mime-db project under MIT license.
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package mimedb
 
 // DB - Mime is a collection of mime types with extension as key and content-type as value.

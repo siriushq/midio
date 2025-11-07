@@ -1,6 +1,7 @@
 //go:build !netbsd && !solaris
 // +build !netbsd,!solaris
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package disk_test
 
 import (

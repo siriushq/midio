@@ -13,6 +13,7 @@
 // and usage of the most low-level cryptographic building blocks.
 //
 // [1]: https://en.wikipedia.org/wiki/FIPS_140
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package fips
 
 import "crypto/tls"

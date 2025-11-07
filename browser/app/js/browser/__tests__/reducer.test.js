@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 import reducer from "../reducer"
 import * as actionsCommon from "../actions"
 

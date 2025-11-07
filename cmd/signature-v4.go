@@ -6,6 +6,7 @@
 // - Based on Authorization header.
 // - Based on Query parameters.
 // - Based on Form POST policy.
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package cmd
 
 import (

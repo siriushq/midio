@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 import { READ_ONLY, WRITE_ONLY, READ_WRITE, NONE } from '../constants'
 
 import React from "react"

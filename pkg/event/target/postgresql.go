@@ -35,6 +35,7 @@
 //     event_data JSONB
 // );
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package target
 
 import (

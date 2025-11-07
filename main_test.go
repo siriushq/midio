@@ -1,6 +1,7 @@
 //go:build testrunmain
 // +build testrunmain
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package main
 
 import (

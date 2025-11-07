@@ -1,6 +1,7 @@
 //go:build linux
 // +build linux
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 // Package cgroup implements parsing for all the cgroup
 // categories and functionality in a simple way.
 package cgroup

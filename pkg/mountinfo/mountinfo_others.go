@@ -1,6 +1,7 @@
 //go:build !linux && !windows
 // +build !linux,!windows
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package mountinfo
 
 // CheckCrossDevice - check if any input path has multiple sub-mounts.

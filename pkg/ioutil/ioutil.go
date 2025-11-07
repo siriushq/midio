@@ -1,5 +1,6 @@
 // Package ioutil implements some I/O utility functions which are not covered
 // by the standard library.
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package ioutil
 
 import (

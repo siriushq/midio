@@ -4,6 +4,7 @@
 // This file modifies original bpool.go to add one more option
 // to provide []byte capacity for better GC management.
 
+// SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
 package bpool
 
 // BytePoolCap implements a leaky pool of []byte in the form of a bounded channel.
