@@ -16,7 +16,7 @@ siriushq/midio
 building
 ========
 
-	The preferred environment uses Git and Go 1.18.
+	The preferred environment uses Git and Go 1.19.
 	Go distribution is provided by go-wrapper <git@github.com:furkilic/go-wrapper>.
 
 	Ensure that GOROOT is unset, or your local Go installation may take precedence.
