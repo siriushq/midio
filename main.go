@@ -1,9 +1,3 @@
-/*
- * Below main package has canonical imports for 'go get' and 'go build'
- * to work with all other clones of github.com/siriushq/midio repository. For
- * more information refer https://golang.org/doc/go1.4#canonicalimports
- */
-
 //go:generate go run main_build.go
 
 // SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0
@@ -11,19 +5,14 @@ package main
 
 // #include <stdlib.h>
 //
-// typedef void* midio_builder;
-// typedef void* midio_server;
-// typedef void (*midio_thread_closure)();
-//
-// static inline void __midio_call_closure(midio_thread_closure closure) {
-//  	closure();
-// }
+// typedef uintptr_t midio_builder;
+// typedef uintptr_t midio;
 import "C"
 
 import (
 	"os"
 	"path/filepath"
-	"unsafe"
+	"runtime/cgo"
 
 	midio "github.com/siriushq/midio/cmd"
 	_ "github.com/siriushq/midio/cmd/gateway"
@@ -55,9 +44,9 @@ type MidioFlags struct {
 	Anonymous bool
 }
 
-// MidioServer
-// A holder object for server instances, allowing for them to be later closed and shut down.
-type MidioServer struct {
+// Midio
+// A holder object for created daemon instances, allowing for them to be later closed and shut down.
+type Midio struct {
 	App *cli.App
 }
 
@@ -75,38 +64,38 @@ func midio_version() *C.char {
 }
 
 //export midio_create
-func midio_create() *C.midio_builder {
-	builder := &MidioFlags{}
-	return (*C.midio_builder)(unsafe.Pointer(builder))
+func midio_create() C.midio_builder {
+	builder := cgo.NewHandle(&MidioFlags{})
+	return C.midio_builder(builder)
 }
 
 //export midio_volume
-func midio_volume(builder *C.midio_builder, path *C.char) {
-	flags := (*MidioFlags)(unsafe.Pointer(builder))
+func midio_volume(builder C.midio_builder, path *C.char) {
+	flags := cgo.Handle(uintptr(builder)).Value().(*MidioFlags)
 	flags.Volumes = append(flags.Volumes, C.GoString(path))
 }
 
 //export midio_certificates
-func midio_certificates(builder *C.midio_builder, directory *C.char) {
-	flags := (*MidioFlags)(unsafe.Pointer(builder))
+func midio_certificates(builder C.midio_builder, directory *C.char) {
+	flags := cgo.Handle(uintptr(builder)).Value().(*MidioFlags)
 	flags.CertsDir = C.GoString(directory)
 }
 
 //export midio_address
-func midio_address(builder *C.midio_builder, address *C.char) {
-	flags := (*MidioFlags)(unsafe.Pointer(builder))
+func midio_address(builder C.midio_builder, address *C.char) {
+	flags := cgo.Handle(uintptr(builder)).Value().(*MidioFlags)
 	flags.Address = C.GoString(address)
 }
 
 //export midio_quiet
-func midio_quiet(builder *C.midio_builder) {
-	flags := (*MidioFlags)(unsafe.Pointer(builder))
+func midio_quiet(builder C.midio_builder) {
+	flags := cgo.Handle(uintptr(builder)).Value().(*MidioFlags)
 	flags.Quiet = true
 }
 
 //export midio_anonymous
-func midio_anonymous(builder *C.midio_builder) {
-	flags := (*MidioFlags)(unsafe.Pointer(builder))
+func midio_anonymous(builder C.midio_builder) {
+	flags := cgo.Handle(uintptr(builder)).Value().(*MidioFlags)
 	flags.Anonymous = true
 }
 
@@ -120,21 +109,13 @@ func midio_message() *C.char {
 	return C.CString(message)
 }
 
-// Run the provided function pointer in a goroutine.
-// This is a simple, managed and cross-platform alternative to managing threads
-// directly, which may be favourable depending on your usage environment.
-//
-//export midio_thread
-func midio_thread(closure *C.midio_thread_closure) {
-	go C.__midio_call_closure(*closure)
-}
-
 // Entry point for `midio server` in shared-library build, returning a closeable resource.
 //
-//export midio_create_server
-func midio_create_server(builder *C.midio_builder) *C.midio_server {
-	flags := (*MidioFlags)(unsafe.Pointer(builder))
-	arguments := []string{"server"}
+//export midio_server
+func midio_server(builder C.midio_builder) C.midio {
+	handle := cgo.Handle(uintptr(builder))
+	flags := handle.Value().(*MidioFlags)
+	arguments := []string{"midio", "server"}
 
 	logger.EnableShared(MidioChannel)
 	if flags.Address != "" {
@@ -161,14 +142,18 @@ func midio_create_server(builder *C.midio_builder) *C.midio_server {
 		}
 	}()
 
-	server := &MidioServer{App: app}
-	return (*C.midio_server)(unsafe.Pointer(server))
+	handle.Delete()
+	server := cgo.NewHandle(&Midio{App: app})
+	return C.midio(server)
 }
 
 //export midio_close
-func midio_close(builder *C.midio_server) {
-	server := (*MidioServer)(unsafe.Pointer(builder))
-	if server.App != nil {
+func midio_close(builder C.midio) {
+	handle := cgo.Handle(uintptr(builder))
+	daemon := handle.Value().(*Midio)
+
+	if daemon.App != nil {
+		handle.Delete()
 		// TODO - use App in the future, for now just send interrupt
 		// on Windows, we catch and ignore SIGINT error, then throw SIGKILL
 		// midio cannot close without closing the current process, right now

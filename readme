@@ -16,10 +16,13 @@ siriushq/midio
 building
 ========
 
-	building binary ====================================================================
-	The preferred environment uses Git and Go >1.16.
+	The preferred environment uses Git and Go 1.16.
 	Go distribution is provided by go-wrapper <git@github.com:furkilic/go-wrapper>.
 
+	Ensure that GOROOT is unset, or your local Go installation may take precedence.
+	Always test the [gow version] command to ensure this is not the case.
+
+	building binary ====================================================================
 	$ git clone --recursive git@github.com:siriushq/midio.git
 	$ cd midio
 	$ gow generate
