@@ -5,7 +5,6 @@ import (
 	"crypto/x509"
 	"fmt"
 	"net"
-	"runtime"
 	"strings"
 
 	humanize "github.com/dustin/go-humanize"
@@ -61,13 +60,6 @@ func printStartupMessage(apiEndpoints []string, err error) {
 	// Prints credential, region and browser access.
 	printServerCommonMsg(strippedAPIEndpoints)
 
-	// Prints `mc` cli configuration message chooses
-	// first endpoint as default.
-	printCLIAccessMsg(strippedAPIEndpoints[0], "myminio")
-
-	// Prints documentation message.
-	printObjectAPIMsg()
-
 	// SSL is configured reads certification chain, prints
 	// authority and expiry.
 	if color.IsTerminal() && !globalCLIContext.Anonymous {
@@ -118,13 +110,21 @@ func printServerCommonMsg(apiEndpoints []string) {
 	// Get saved region.
 	region := globalServerRegion
 
-	apiEndpointStr := strings.Join(apiEndpoints, "  ")
+	var apiEndpointStrBuilder strings.Builder
+	apiEndpointStrBuilder.WriteString("\n")
+	for i := 0; i < len(apiEndpoints); i++ {
+		if strings.TrimSpace(apiEndpoints[i]) == "" {
+			continue
+		}
+		apiEndpointStrBuilder.WriteString(apiEndpoints[i] + "\n")
+	}
+	apiEndpointStr := apiEndpointStrBuilder.String()
 
 	// Colorize the message and print.
-	logStartupMessage(color.Blue("Endpoint: ") + color.Bold(fmt.Sprintf("%s ", apiEndpointStr)))
+	logStartupMessage(color.Blue("Endpoint: ") + color.Bold(apiEndpointStr))
 	if color.IsTerminal() && !globalCLIContext.Anonymous {
-		logStartupMessage(color.Blue("RootUser: ") + color.Bold(fmt.Sprintf("%s ", cred.AccessKey)))
-		logStartupMessage(color.Blue("RootPass: ") + color.Bold(fmt.Sprintf("%s ", cred.SecretKey)))
+		logStartupMessage(color.Blue("Root Access Key: ") + color.Bold(cred.AccessKey))
+		logStartupMessage(color.Blue("Root Secret Key: ") + color.Bold(cred.SecretKey))
 		if region != "" {
 			logStartupMessage(color.Blue("Region: ") + color.Bold(fmt.Sprintf(getFormatStr(len(region), 2), region)))
 		}
@@ -132,8 +132,9 @@ func printServerCommonMsg(apiEndpoints []string) {
 	printEventNotifiers()
 
 	if globalBrowserEnabled {
-		logStartupMessage(color.Blue("\nBrowser Access:"))
-		logStartupMessage(fmt.Sprintf(getFormatStr(len(apiEndpointStr), 3), apiEndpointStr))
+		logStartupMessage(color.Blue("\nBrowser Access: ") + color.Bold("Enabled"))
+	} else {
+		logStartupMessage(color.Blue("\nBrowser Access: ") + color.Bold("Disabled"))
 	}
 }
 
@@ -154,37 +155,6 @@ func printEventNotifiers() {
 	}
 
 	logStartupMessage(arnMsg)
-}
-
-// Prints startup message for command line access. Prints link to our documentation
-// and custom platform specific message.
-func printCLIAccessMsg(endPoint string, alias string) {
-	// Get saved credentials.
-	cred := globalActiveCred
-
-	// Configure 'mc', following block prints platform specific information for minio client.
-	if color.IsTerminal() && !globalCLIContext.Anonymous {
-		logStartupMessage(color.Blue("\nCommand-line Access: ") + mcQuickStartGuide)
-		if runtime.GOOS == globalWindowsOSName {
-			mcMessage := fmt.Sprintf("$ mc.exe alias set %s %s %s %s", alias,
-				endPoint, cred.AccessKey, cred.SecretKey)
-			logStartupMessage(fmt.Sprintf(getFormatStr(len(mcMessage), 3), mcMessage))
-		} else {
-			mcMessage := fmt.Sprintf("$ mc alias set %s %s %s %s", alias,
-				endPoint, cred.AccessKey, cred.SecretKey)
-			logStartupMessage(fmt.Sprintf(getFormatStr(len(mcMessage), 3), mcMessage))
-		}
-	}
-}
-
-// Prints startup message for Object API acces, prints link to our SDK documentation.
-func printObjectAPIMsg() {
-	logStartupMessage(color.Blue("\nObject API (Amazon S3 compatible):"))
-	logStartupMessage(color.Blue("   Go: ") + fmt.Sprintf(getFormatStr(len(goQuickStartGuide), 8), goQuickStartGuide))
-	logStartupMessage(color.Blue("   Java: ") + fmt.Sprintf(getFormatStr(len(javaQuickStartGuide), 6), javaQuickStartGuide))
-	logStartupMessage(color.Blue("   Python: ") + fmt.Sprintf(getFormatStr(len(pyQuickStartGuide), 4), pyQuickStartGuide))
-	logStartupMessage(color.Blue("   JavaScript: ") + jsQuickStartGuide)
-	logStartupMessage(color.Blue("   .NET: ") + fmt.Sprintf(getFormatStr(len(dotnetQuickStartGuide), 6), dotnetQuickStartGuide))
 }
 
 // Get formatted disk/storage info message.

@@ -539,7 +539,7 @@ func serverMain(ctx *cli.Context) {
 	printStartupMessage(getAPIEndpoints(), err)
 
 	if globalActiveCred.Equal(auth.DefaultCredentials) {
-		msg := fmt.Sprintf("Detected default credentials '%s', please change the credentials immediately using 'MINIO_ROOT_USER' and 'MINIO_ROOT_PASSWORD'", globalActiveCred)
+		msg := fmt.Sprintf("Insecure default credentials detected ('%s')", globalActiveCred)
 		logger.StartupMessage(color.RedBold(msg))
 	}
 

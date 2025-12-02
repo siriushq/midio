@@ -19,13 +19,6 @@ func printGatewayStartupMessage(apiEndPoints []string, backendType string) {
 	// Prints credential.
 	printGatewayCommonMsg(strippedAPIEndpoints)
 
-	// Prints `mc` cli configuration message chooses
-	// first endpoint as default.
-	printCLIAccessMsg(strippedAPIEndpoints[0], fmt.Sprintf("my%s", backendType))
-
-	// Prints documentation message.
-	printObjectAPIMsg()
-
 	// SSL is configured reads certification chain, prints
 	// authority and expiry.
 	if color.IsTerminal() && !globalCLIContext.Anonymous {
