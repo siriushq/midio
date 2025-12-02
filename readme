@@ -70,6 +70,16 @@ or building will fail.
 	$ bunx mint dev
 	==============================================================
 
+	running test suite ===================================================
+	This can take a long time to run.
+	Your firewall may block any opened ports when running it.
+
+	This is required to be ran, and both binary & shared library builds
+	tested manually, before any patches are submitted (when contributing).
+
+	$ gow test ./...
+	======================================================================
+
 contributing
 ============
 

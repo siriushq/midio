@@ -117,7 +117,7 @@ func TestGetHostIP(t *testing.T) {
 		expectedErr    error
 	}{
 		{"localhost", set.CreateStringSet("127.0.0.1"), nil},
-		{"example.org", set.CreateStringSet("93.184.216.34"), nil},
+		{"google-public-dns-a.google.com", set.CreateStringSet("8.8.8.8"), nil},
 	}
 
 	for _, testCase := range testCases {

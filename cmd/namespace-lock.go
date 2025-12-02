@@ -257,7 +257,7 @@ func getSource(n int) string {
 	if ok {
 		filename = pathutil.Base(filename)
 		funcName = strings.TrimPrefix(runtime.FuncForPC(pc).Name(),
-			"github.com/minio/minio/cmd.")
+			"github.com/siriushq/midio/cmd.")
 	} else {
 		filename = "<unknown>"
 		lineNum = 0

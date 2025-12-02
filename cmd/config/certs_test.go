@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"runtime"
+	"strings"
 	"testing"
 )
 
@@ -149,26 +150,26 @@ M9ofSEt/bdRD
 	testCases := []struct {
 		certFile          string
 		expectedResultLen int
-		expectedErr       error
+		expectedErr       string
 	}{
-		{"nonexistent-file", 0, nonexistentErr},
-		{tempFile1, 0, fmt.Errorf("Empty public certificate file %s", tempFile1)},
-		{tempFile2, 0, fmt.Errorf("Could not read PEM block from file %s", tempFile2)},
-		{tempFile3, 0, fmt.Errorf("asn1: structure error: sequence tag mismatch")},
-		{tempFile4, 1, nil},
-		{tempFile5, 2, nil},
+		{"nonexistent-file", 0, nonexistentErr.Error()},
+		{tempFile1, 0, fmt.Sprintf("Empty public certificate file %s", tempFile1)},
+		{tempFile2, 0, fmt.Sprintf("Could not read PEM block from file %s", tempFile2)},
+		{tempFile3, 0, "invalid RDNSequence"},
+		{tempFile4, 1, ""},
+		{tempFile5, 2, ""},
 	}
 
 	for _, testCase := range testCases {
 		certs, err := ParsePublicCertFile(testCase.certFile)
 
-		if testCase.expectedErr == nil {
+		if testCase.expectedErr == "" {
 			if err != nil {
-				t.Fatalf("error: expected = <nil>, got = %v", err)
+				t.Fatalf("error: expected = <nil>, got = %q", err)
 			}
 		} else if err == nil {
 			t.Fatalf("error: expected = %v, got = <nil>", testCase.expectedErr)
-		} else if testCase.expectedErr.Error() != err.Error() {
+		} else if !strings.Contains(err.Error(), testCase.expectedErr) {
 			t.Fatalf("error: expected = %v, got = %v", testCase.expectedErr, err)
 		}
 

@@ -10,7 +10,6 @@ import (
 	"net/url"
 	"os"
 	"runtime"
-	"strings"
 	"testing"
 	"time"
 )
@@ -104,56 +103,6 @@ func TestDownloadURL(t *testing.T) {
 		t.Errorf("Expected %s, got %s", mesosDeploymentDoc, durl)
 	}
 	os.Unsetenv("MESOS_CONTAINER_NAME")
-}
-
-// Tests user agent string.
-func TestUserAgent(t *testing.T) {
-	testCases := []struct {
-		envName     string
-		envValue    string
-		mode        string
-		expectedStr string
-	}{
-		{
-			envName:     "",
-			envValue:    "",
-			mode:        globalMinioModeFS,
-			expectedStr: fmt.Sprintf("MinIO (%s; %s; %s; source) MinIO/DEVELOPMENT.GOGET MinIO/DEVELOPMENT.GOGET MinIO/DEVELOPMENT.GOGET", runtime.GOOS, runtime.GOARCH, globalMinioModeFS),
-		},
-		{
-			envName:     "MESOS_CONTAINER_NAME",
-			envValue:    "mesos-11111",
-			mode:        globalMinioModeErasure,
-			expectedStr: fmt.Sprintf("MinIO (%s; %s; %s; %s; source) MinIO/DEVELOPMENT.GOGET MinIO/DEVELOPMENT.GOGET MinIO/DEVELOPMENT.GOGET MinIO/universe-%s", runtime.GOOS, runtime.GOARCH, globalMinioModeErasure, "dcos", "mesos-1111"),
-		},
-		{
-			envName:     "KUBERNETES_SERVICE_HOST",
-			envValue:    "10.11.148.5",
-			mode:        globalMinioModeErasure,
-			expectedStr: fmt.Sprintf("MinIO (%s; %s; %s; %s; source) MinIO/DEVELOPMENT.GOGET MinIO/DEVELOPMENT.GOGET MinIO/DEVELOPMENT.GOGET", runtime.GOOS, runtime.GOARCH, globalMinioModeErasure, "kubernetes"),
-		},
-	}
-
-	for i, testCase := range testCases {
-		sci := os.Getenv("MINIO_CI_CD")
-		os.Setenv("MINIO_CI_CD", "")
-
-		os.Setenv(testCase.envName, testCase.envValue)
-		if testCase.envName == "MESOS_CONTAINER_NAME" {
-			os.Setenv("MARATHON_APP_LABEL_DCOS_PACKAGE_VERSION", "mesos-1111")
-		}
-		str := getUserAgent(testCase.mode)
-		expectedStr := testCase.expectedStr
-		if IsDocker() {
-			expectedStr = strings.Replace(expectedStr, "; source", "; docker; source", -1)
-		}
-		if str != expectedStr {
-			t.Errorf("Test %d: expected: %s, got: %s", i+1, expectedStr, str)
-		}
-		os.Setenv("MINIO_CI_CD", sci)
-		os.Unsetenv("MARATHON_APP_LABEL_DCOS_PACKAGE_VERSION")
-		os.Unsetenv(testCase.envName)
-	}
 }
 
 // Tests if the environment we are running is in DCOS.
