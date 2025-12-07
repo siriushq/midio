@@ -17,7 +17,8 @@ import (
 	"time"
 
 	jwtgo "github.com/dgrijalva/jwt-go"
-	jsoniter "github.com/json-iterator/go"
+	
+	stdjson "encoding/json"
 )
 
 // SigningMethodHMAC - Implements the HMAC-SHA family of signing methods signing methods
@@ -243,8 +244,7 @@ func ParseUnverifiedStandardClaims(tokenString string, claims *StandardClaims, b
 	}
 
 	var header = jwtHeader{}
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	if err = json.Unmarshal(buf[:n], &header); err != nil {
+	if err = stdjson.Unmarshal(buf[:n], &header); err != nil {
 		return nil, &jwtgo.ValidationError{Inner: err, Errors: jwtgo.ValidationErrorMalformed}
 	}
 
@@ -253,7 +253,7 @@ func ParseUnverifiedStandardClaims(tokenString string, claims *StandardClaims, b
 		return nil, &jwtgo.ValidationError{Inner: err, Errors: jwtgo.ValidationErrorMalformed}
 	}
 
-	if err = json.Unmarshal(buf[:n], claims); err != nil {
+	if err = stdjson.Unmarshal(buf[:n], claims); err != nil {
 		return nil, &jwtgo.ValidationError{Inner: err, Errors: jwtgo.ValidationErrorMalformed}
 	}
 
@@ -346,8 +346,7 @@ func ParseUnverifiedMapClaims(tokenString string, claims *MapClaims, buf []byte)
 	}
 
 	var header = jwtHeader{}
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	if err = json.Unmarshal(buf[:n], &header); err != nil {
+	if err = stdjson.Unmarshal(buf[:n], &header); err != nil {
 		return nil, &jwtgo.ValidationError{Inner: err, Errors: jwtgo.ValidationErrorMalformed}
 	}
 
@@ -356,7 +355,7 @@ func ParseUnverifiedMapClaims(tokenString string, claims *MapClaims, buf []byte)
 		return nil, &jwtgo.ValidationError{Inner: err, Errors: jwtgo.ValidationErrorMalformed}
 	}
 
-	if err = json.Unmarshal(buf[:n], &claims.MapClaims); err != nil {
+	if err = stdjson.Unmarshal(buf[:n], &claims.MapClaims); err != nil {
 		return nil, &jwtgo.ValidationError{Inner: err, Errors: jwtgo.ValidationErrorMalformed}
 	}
 

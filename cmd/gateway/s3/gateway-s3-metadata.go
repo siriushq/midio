@@ -4,12 +4,11 @@ package s3
 import (
 	"bytes"
 	"context"
-	"encoding/json"
+	stdjson "encoding/json"
 	"errors"
 	"net/http"
 	"time"
 
-	jsoniter "github.com/json-iterator/go"
 	minio "github.com/siriushq/midio/cmd"
 	"github.com/siriushq/midio/cmd/logger"
 	"github.com/siriushq/midio/pkg/hash"
@@ -124,8 +123,7 @@ func (m gwMetaV1) ObjectToPartOffset(ctx context.Context, offset int64) (partInd
 
 // Constructs GWMetaV1 using `jsoniter` lib to retrieve each field.
 func gwMetaUnmarshalJSON(ctx context.Context, gwMetaBuf []byte) (gwMeta gwMetaV1, err error) {
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	err = json.Unmarshal(gwMetaBuf, &gwMeta)
+	err = stdjson.Unmarshal(gwMetaBuf, &gwMeta)
 	return gwMeta, err
 }
 
@@ -148,7 +146,7 @@ func readGWMetadata(ctx context.Context, buf bytes.Buffer) (gwMeta gwMetaV1, err
 // getGWMetadata - unmarshals dare.meta into a *minio.PutObjReader
 func getGWMetadata(ctx context.Context, bucket, prefix string, gwMeta gwMetaV1) (*minio.PutObjReader, error) {
 	// Marshal json.
-	metadataBytes, err := json.Marshal(&gwMeta)
+	metadataBytes, err := stdjson.Marshal(&gwMeta)
 	if err != nil {
 		logger.LogIf(ctx, err)
 		return nil, err

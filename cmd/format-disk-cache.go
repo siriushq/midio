@@ -13,7 +13,8 @@ import (
 	"reflect"
 	"strings"
 
-	jsoniter "github.com/json-iterator/go"
+	stdjson "encoding/json"
+
 	"github.com/minio/sio"
 	"github.com/siriushq/midio/cmd/logger"
 )
@@ -412,8 +413,7 @@ func migrateOldCache(ctx context.Context, c *diskCache) error {
 			}
 			// marshal cache metadata after adding version and stat info
 			meta := &cacheMeta{}
-			var json = jsoniter.ConfigCompatibleWithStandardLibrary
-			if err = json.Unmarshal(metaBytes, &meta); err != nil {
+			if err = stdjson.Unmarshal(metaBytes, &meta); err != nil {
 				return err
 			}
 			// move cached object to new cache directory path
@@ -439,7 +439,7 @@ func migrateOldCache(ctx context.Context, c *diskCache) error {
 			meta.Version = cacheMetaVersion
 			meta.Stat.Size = stat.Size()
 			meta.Stat.ModTime = stat.ModTime()
-			jsonData, err := json.Marshal(meta)
+			jsonData, err := stdjson.Marshal(meta)
 			if err != nil {
 				return err
 			}

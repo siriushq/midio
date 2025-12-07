@@ -9,7 +9,8 @@ import (
 	"strings"
 	"time"
 
-	jsoniter "github.com/json-iterator/go"
+	stdjson "encoding/json"
+
 	miniogopolicy "github.com/minio/minio-go/v7/pkg/policy"
 	xhttp "github.com/siriushq/midio/cmd/http"
 	"github.com/siriushq/midio/cmd/logger"
@@ -181,8 +182,7 @@ func PolicyToBucketAccessPolicy(bucketPolicy *policy.Policy) (*miniogopolicy.Buc
 	}
 
 	var policyInfo miniogopolicy.BucketAccessPolicy
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	if err = json.Unmarshal(data, &policyInfo); err != nil {
+	if err = stdjson.Unmarshal(data, &policyInfo); err != nil {
 		// This should not happen because data is valid to JSON data.
 		return nil, err
 	}
@@ -199,8 +199,7 @@ func BucketAccessPolicyToPolicy(policyInfo *miniogopolicy.BucketAccessPolicy) (*
 	}
 
 	var bucketPolicy policy.Policy
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	if err = json.Unmarshal(data, &bucketPolicy); err != nil {
+	if err = stdjson.Unmarshal(data, &bucketPolicy); err != nil {
 		// This should not happen because data is valid to JSON data.
 		return nil, err
 	}

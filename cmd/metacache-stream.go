@@ -10,7 +10,8 @@ import (
 	"strings"
 	"sync"
 
-	jsoniter "github.com/json-iterator/go"
+	stdjson "encoding/json"
+
 	"github.com/klauspost/compress/s2"
 	"github.com/siriushq/midio/cmd/logger"
 	"github.com/tinylib/msgp/msgp"
@@ -812,8 +813,7 @@ type metacacheBlock struct {
 }
 
 func (b metacacheBlock) headerKV() map[string]string {
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	v, err := json.Marshal(b)
+	v, err := stdjson.Marshal(b)
 	if err != nil {
 		logger.LogIf(context.Background(), err) // Unlikely
 		return nil

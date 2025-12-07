@@ -22,7 +22,9 @@ import (
 
 	"github.com/dustin/go-humanize"
 	"github.com/google/uuid"
-	jsoniter "github.com/json-iterator/go"
+	
+	stdjson "encoding/json"
+
 	"github.com/klauspost/readahead"
 	"github.com/siriushq/midio/cmd/config"
 	"github.com/siriushq/midio/cmd/config/storageclass"
@@ -565,8 +567,7 @@ func (s *xlStorage) GetDiskID() (string, error) {
 	}
 
 	format := &formatErasureV3{}
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	if err = json.Unmarshal(b, &format); err != nil {
+	if err = stdjson.Unmarshal(b, &format); err != nil {
 		logger.LogIf(GlobalContext, err) // log unexpected errors
 		return "", errCorruptedFormat
 	}
@@ -1928,8 +1929,7 @@ func (s *xlStorage) RenameData(ctx context.Context, srcVolume, srcPath string, f
 		} else {
 			// This code-path is to preserve the legacy data.
 			xlMetaLegacy := &xlMetaV1Object{}
-			var json = jsoniter.ConfigCompatibleWithStandardLibrary
-			if err := json.Unmarshal(dstBuf, xlMetaLegacy); err != nil {
+			if err := stdjson.Unmarshal(dstBuf, xlMetaLegacy); err != nil {
 				logger.LogIf(s.ctx, err)
 				return errFileCorrupt
 			}

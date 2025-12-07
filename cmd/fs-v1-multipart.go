@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	jsoniter "github.com/json-iterator/go"
+	stdjson "encoding/json"
 	"github.com/siriushq/midio/cmd/logger"
 	xioutil "github.com/siriushq/midio/pkg/ioutil"
 	"github.com/siriushq/midio/pkg/trie"
@@ -382,8 +382,7 @@ func (fs *FSObjects) GetMultipartInfo(ctx context.Context, bucket, object, uploa
 	}
 
 	var fsMeta fsMetaV1
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	if err = json.Unmarshal(fsMetaBytes, &fsMeta); err != nil {
+	if err = stdjson.Unmarshal(fsMetaBytes, &fsMeta); err != nil {
 		return minfo, toObjectErr(err, bucket, object)
 	}
 
@@ -511,8 +510,7 @@ func (fs *FSObjects) ListObjectParts(ctx context.Context, bucket, object, upload
 	}
 
 	var fsMeta fsMetaV1
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	if err = json.Unmarshal(fsMetaBytes, &fsMeta); err != nil {
+	if err = stdjson.Unmarshal(fsMetaBytes, &fsMeta); err != nil {
 		return result, err
 	}
 

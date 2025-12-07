@@ -14,7 +14,7 @@ import (
 	"io"
 	"math/rand"
 
-	jsoniter "github.com/json-iterator/go"
+	stdjson "encoding/json"
 )
 
 // ----------------------------------------------------------------------------
@@ -40,8 +40,8 @@ type clientRequest struct {
 // clientResponse represents a JSON-RPC response returned to a client.
 type clientResponse struct {
 	Version string               `json:"jsonrpc"`
-	Result  *jsoniter.RawMessage `json:"result"`
-	Error   *jsoniter.RawMessage `json:"error"`
+	Result  *stdjson.RawMessage `json:"result"`
+	Error   *stdjson.RawMessage `json:"error"`
 }
 
 // EncodeClientRequest encodes parameters for a JSON-RPC client request.
@@ -52,21 +52,19 @@ func EncodeClientRequest(method string, args interface{}) ([]byte, error) {
 		Params:  args,
 		Id:      uint64(rand.Int63()),
 	}
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	return json.Marshal(c)
+	return stdjson.Marshal(c)
 }
 
 // DecodeClientResponse decodes the response body of a client request into
 // the interface reply.
 func DecodeClientResponse(r io.Reader, reply interface{}) error {
 	var c clientResponse
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	if err := json.NewDecoder(r).Decode(&c); err != nil {
+	if err := stdjson.NewDecoder(r).Decode(&c); err != nil {
 		return err
 	}
 	if c.Error != nil {
 		jsonErr := &Error{}
-		if err := json.Unmarshal(*c.Error, jsonErr); err != nil {
+		if err := stdjson.Unmarshal(*c.Error, jsonErr); err != nil {
 			return &Error{
 				Code:    E_SERVER,
 				Message: string(*c.Error),
@@ -79,5 +77,5 @@ func DecodeClientResponse(r io.Reader, reply interface{}) error {
 		return ErrNullResult
 	}
 
-	return json.Unmarshal(*c.Result, reply)
+	return stdjson.Unmarshal(*c.Result, reply)
 }

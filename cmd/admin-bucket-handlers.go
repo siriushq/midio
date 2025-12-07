@@ -2,7 +2,7 @@
 package cmd
 
 import (
-	"encoding/json"
+	stdjson "encoding/json"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -88,7 +88,7 @@ func (a adminAPIHandlers) GetBucketQuotaConfigHandler(w http.ResponseWriter, r *
 		return
 	}
 
-	configData, err := json.Marshal(config)
+	configData, err := stdjson.Marshal(config)
 	if err != nil {
 		writeErrorResponseJSON(ctx, w, toAdminAPIErr(ctx, err), r.URL)
 		return
@@ -138,7 +138,7 @@ func (a adminAPIHandlers) SetRemoteTargetHandler(w http.ResponseWriter, r *http.
 		return
 	}
 	var target madmin.BucketTarget
-	if err = json.Unmarshal(reqBytes, &target); err != nil {
+	if err = stdjson.Unmarshal(reqBytes, &target); err != nil {
 		writeErrorResponseJSON(ctx, w, errorCodes.ToAPIErrWithErr(ErrAdminConfigBadJSON, err), r.URL)
 		return
 	}
@@ -171,7 +171,7 @@ func (a adminAPIHandlers) SetRemoteTargetHandler(w http.ResponseWriter, r *http.
 		writeErrorResponse(ctx, w, toAPIError(ctx, err), r.URL, guessIsBrowserReq(r))
 		return
 	}
-	tgtBytes, err := json.Marshal(&targets)
+	tgtBytes, err := stdjson.Marshal(&targets)
 	if err != nil {
 		writeErrorResponseJSON(ctx, w, errorCodes.ToAPIErrWithErr(ErrAdminConfigBadJSON, err), r.URL)
 		return
@@ -181,7 +181,7 @@ func (a adminAPIHandlers) SetRemoteTargetHandler(w http.ResponseWriter, r *http.
 		return
 	}
 
-	data, err := json.Marshal(target.Arn)
+	data, err := stdjson.Marshal(target.Arn)
 	if err != nil {
 		writeErrorResponseJSON(ctx, w, toAdminAPIErr(ctx, err), r.URL)
 		return
@@ -221,7 +221,7 @@ func (a adminAPIHandlers) ListRemoteTargetsHandler(w http.ResponseWriter, r *htt
 		}
 	}
 	targets := globalBucketTargetSys.ListTargets(ctx, bucket, arnType)
-	data, err := json.Marshal(targets)
+	data, err := stdjson.Marshal(targets)
 	if err != nil {
 		writeErrorResponseJSON(ctx, w, toAdminAPIErr(ctx, err), r.URL)
 		return
@@ -265,7 +265,7 @@ func (a adminAPIHandlers) RemoveRemoteTargetHandler(w http.ResponseWriter, r *ht
 		writeErrorResponse(ctx, w, toAPIError(ctx, err), r.URL, guessIsBrowserReq(r))
 		return
 	}
-	tgtBytes, err := json.Marshal(&targets)
+	tgtBytes, err := stdjson.Marshal(&targets)
 	if err != nil {
 		writeErrorResponseJSON(ctx, w, errorCodes.ToAPIErrWithErr(ErrAdminConfigBadJSON, err), r.URL)
 		return

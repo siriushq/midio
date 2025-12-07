@@ -5,7 +5,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/gob"
-	"encoding/json"
+	stdjson "encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -14,7 +14,6 @@ import (
 	"sync"
 	"time"
 
-	jsoniter "github.com/json-iterator/go"
 	"github.com/siriushq/midio/cmd/logger"
 	"github.com/siriushq/midio/pkg/color"
 	"github.com/siriushq/midio/pkg/console"
@@ -194,7 +193,6 @@ func (o *listPathOptions) findFirstPart(fi FileInfo) (int, error) {
 	}
 	o.debugln("searching for ", search)
 	var tmp metacacheBlock
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
 	i := 0
 	for {
 		partKey := fmt.Sprintf("%s-metacache-part-%d", ReservedMetadataPrefixLower, i)
@@ -203,7 +201,7 @@ func (o *listPathOptions) findFirstPart(fi FileInfo) (int, error) {
 			o.debugln("no match in metadata, waiting")
 			return -1, io.ErrUnexpectedEOF
 		}
-		err := json.Unmarshal([]byte(v), &tmp)
+		err := stdjson.Unmarshal([]byte(v), &tmp)
 		if !ok {
 			logger.LogIf(context.Background(), err)
 			return -1, err
@@ -246,7 +244,7 @@ func getMetacacheBlockInfo(fi FileInfo, block int) (*metacacheBlock, error) {
 	if !ok {
 		return nil, io.ErrUnexpectedEOF
 	}
-	return &tmp, json.Unmarshal([]byte(v), &tmp)
+	return &tmp, stdjson.Unmarshal([]byte(v), &tmp)
 }
 
 const metacachePrefix = ".metacache"

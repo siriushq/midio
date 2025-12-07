@@ -17,13 +17,12 @@ import (
 	"strings"
 	"time"
 
-	jsoniter "github.com/json-iterator/go"
+	stdjson "encoding/json"
+
 	xhttp "github.com/siriushq/midio/cmd/http"
 	"github.com/siriushq/midio/pkg/kms"
 	xnet "github.com/siriushq/midio/pkg/net"
 )
-
-var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 // ErrKESKeyExists is the error returned a KES server
 // when a master key does exist.
@@ -235,7 +234,7 @@ func (c *kesClient) GenerateDataKey(name string, context []byte) ([]byte, []byte
 		Ciphertext []byte `json:"ciphertext"`
 	}
 
-	body, err := json.Marshal(Request{
+	body, err := stdjson.Marshal(Request{
 		Context: context,
 	})
 	if err != nil {
@@ -250,7 +249,7 @@ func (c *kesClient) GenerateDataKey(name string, context []byte) ([]byte, []byte
 	}
 
 	var response Response
-	if err = json.NewDecoder(resp).Decode(&response); err != nil {
+	if err = stdjson.NewDecoder(resp).Decode(&response); err != nil {
 		return nil, nil, err
 	}
 	return response.Plaintext, response.Ciphertext, nil
@@ -271,7 +270,7 @@ func (c *kesClient) DecryptDataKey(name string, ciphertext, context []byte) ([]b
 		Plaintext []byte `json:"plaintext"`
 	}
 
-	body, err := json.Marshal(Request{
+	body, err := stdjson.Marshal(Request{
 		Ciphertext: ciphertext,
 		Context:    context,
 	})
@@ -287,7 +286,7 @@ func (c *kesClient) DecryptDataKey(name string, ciphertext, context []byte) ([]b
 	}
 
 	var response Response
-	if err = json.NewDecoder(resp).Decode(&response); err != nil {
+	if err = stdjson.NewDecoder(resp).Decode(&response); err != nil {
 		return nil, err
 	}
 	return response.Plaintext, nil
@@ -339,7 +338,7 @@ func parseErrorResponse(resp *http.Response) error {
 			Message string `json:"message"`
 		}
 		var response Response
-		if err := json.NewDecoder(io.LimitReader(resp.Body, size)).Decode(&response); err != nil {
+		if err := stdjson.NewDecoder(io.LimitReader(resp.Body, size)).Decode(&response); err != nil {
 			return err
 		}
 		return NewKESError(resp.StatusCode, response.Message)

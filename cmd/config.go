@@ -3,13 +3,13 @@ package cmd
 
 import (
 	"context"
-	"encoding/json"
 	"path"
 	"sort"
 	"strings"
 	"unicode/utf8"
 
-	jsoniter "github.com/json-iterator/go"
+	stdjson "encoding/json"
+
 	"github.com/siriushq/midio/cmd/config"
 	"github.com/siriushq/midio/pkg/kms"
 	"github.com/siriushq/midio/pkg/madmin"
@@ -115,7 +115,7 @@ func saveServerConfigHistory(ctx context.Context, objAPI ObjectLayer, kv []byte)
 }
 
 func saveServerConfig(ctx context.Context, objAPI ObjectLayer, cfg interface{}) error {
-	data, err := json.Marshal(cfg)
+	data, err := stdjson.Marshal(cfg)
 	if err != nil {
 		return err
 	}
@@ -154,8 +154,7 @@ func readServerConfig(ctx context.Context, objAPI ObjectLayer) (config.Config, e
 	}
 
 	var srvCfg = config.New()
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	if err = json.Unmarshal(data, &srvCfg); err != nil {
+	if err = stdjson.Unmarshal(data, &srvCfg); err != nil {
 		return nil, err
 	}
 

@@ -7,7 +7,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	jsoniter "github.com/json-iterator/go"
+	stdjson "encoding/json"
+
 	"github.com/siriushq/midio/cmd/logger"
 	"github.com/siriushq/midio/pkg/hash"
 	"github.com/siriushq/midio/pkg/madmin"
@@ -54,8 +55,7 @@ func loadDataUsageFromBackend(ctx context.Context, objAPI ObjectLayer) (madmin.D
 	defer r.Close()
 
 	var dataUsageInfo madmin.DataUsageInfo
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	if err = json.NewDecoder(r).Decode(&dataUsageInfo); err != nil {
+	if err = stdjson.NewDecoder(r).Decode(&dataUsageInfo); err != nil {
 		return madmin.DataUsageInfo{}, err
 	}
 

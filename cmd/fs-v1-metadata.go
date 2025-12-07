@@ -12,7 +12,8 @@ import (
 	pathutil "path"
 	"time"
 
-	jsoniter "github.com/json-iterator/go"
+	stdjson "encoding/json"
+
 	xhttp "github.com/siriushq/midio/cmd/http"
 	"github.com/siriushq/midio/cmd/logger"
 	"github.com/siriushq/midio/pkg/lock"
@@ -75,8 +76,7 @@ func (c *FSChecksumInfoV1) UnmarshalJSON(data []byte) error {
 	}
 
 	var info checksuminfo
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	err := json.Unmarshal(data, &info)
+	err := stdjson.Unmarshal(data, &info)
 	if err != nil {
 		return err
 	}
@@ -213,8 +213,7 @@ func (m *fsMetaV1) ReadFrom(ctx context.Context, lk *lock.LockedFile) (n int64, 
 		return 0, io.EOF
 	}
 
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
-	if err = json.Unmarshal(fsMetaBuf, m); err != nil {
+	if err = stdjson.Unmarshal(fsMetaBuf, m); err != nil {
 		return 0, err
 	}
 
