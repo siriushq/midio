@@ -14,7 +14,7 @@ midio.exe
 release
 
 # go-wrapper
-.go/wrapper/*
+.go/wrapper/**
 !.go/wrapper/go-wrapper.properties
 
 # Generated files
