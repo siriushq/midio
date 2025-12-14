@@ -13,7 +13,7 @@ It is mandatory to read [license] & [/attribution/*] before using this software.
 building
 ========
 
-The preferred environment uses Git and Go 1.16.
+The preferred environment uses Git and Go 1.19.
 Go distribution is provided by go-wrapper <git@github.com:furkilic/go-wrapper>.
 
 Ensure that GOROOT is unset, or your local Go installation may take precedence.
