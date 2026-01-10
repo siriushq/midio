@@ -2125,18 +2125,6 @@ func initTestAPIEndPoints(objLayer ObjectLayer, apiFunctions []string) http.Hand
 	return muxRouter
 }
 
-// Initialize Web RPC Handlers for testing
-func initTestWebRPCEndPoint(objLayer ObjectLayer) http.Handler {
-	globalObjLayerMutex.Lock()
-	globalObjectAPI = objLayer
-	globalObjLayerMutex.Unlock()
-
-	// Initialize router.
-	muxRouter := mux.NewRouter().SkipClean(true)
-	registerWebRouter(muxRouter)
-	return muxRouter
-}
-
 // generateTLSCertKey creates valid key/cert with registered DNS or IP address
 // depending on the passed parameter. That way, we can use tls config without
 // passing InsecureSkipVerify flag.  This code is a simplified version of

@@ -75,13 +75,6 @@ func configureServerHandler(endpointServerPools EndpointServerPools) (http.Handl
 		registerDistErasureRouters(router, endpointServerPools)
 	}
 
-	// Register web router when its enabled.
-	if globalBrowserEnabled {
-		if err := registerWebRouter(router); err != nil {
-			return nil, err
-		}
-	}
-
 	// Add Admin router, all APIs are enabled in server mode.
 	registerAdminRouter(router, true, true)
 

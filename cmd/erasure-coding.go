@@ -11,7 +11,7 @@ import (
 	"sync"
 
 	"github.com/cespare/xxhash/v2"
-	"github.com/klauspost/reedsolomon"
+	"github.com/siriushq/midio/pkg/reedsolomon"
 	"github.com/siriushq/midio/cmd/logger"
 )
 

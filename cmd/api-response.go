@@ -769,14 +769,6 @@ func writeErrorResponse(ctx context.Context, w http.ResponseWriter, err APIError
 		err.Description = fmt.Sprintf("Region does not match; expecting '%s'.", globalServerRegion)
 	case "AuthorizationHeaderMalformed":
 		err.Description = fmt.Sprintf("The authorization header is malformed; the region is wrong; expecting '%s'.", globalServerRegion)
-	case "AccessDenied":
-		// The request is from browser and also if browser
-		// is enabled we need to redirect.
-		if browser && globalBrowserEnabled {
-			w.Header().Set(xhttp.Location, minioReservedBucketPath+reqURL.Path)
-			w.WriteHeader(http.StatusTemporaryRedirect)
-			return
-		}
 	}
 
 	// Generate error response.

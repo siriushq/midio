@@ -36,8 +36,7 @@ prime/
 stage/
 site/
 
-vendor/**/*.js
-vendor/**/*.json
+vendor/**
 
 # Ignore everything except directories (keep structure)
 !*/

@@ -135,16 +135,6 @@ func setRedirectHandler(h http.Handler) http.Handler {
 
 func setBrowserRedirectHandler(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// Re-direction is handled specifically for browser requests.
-		if globalBrowserEnabled && guessIsBrowserReq(r) {
-			// Fetch the redirect location if any.
-			redirectLocation := getRedirectLocation(r.URL.Path)
-			if redirectLocation != "" {
-				// Employ a temporary re-direct.
-				http.Redirect(w, r, redirectLocation, http.StatusTemporaryRedirect)
-				return
-			}
-		}
 		h.ServeHTTP(w, r)
 	})
 }
@@ -167,11 +157,6 @@ func getRedirectLocation(urlPath string) (rLocation string) {
 	}
 	if contains([]string{
 		SlashSeparator,
-		"/webrpc",
-		"/login",
-		"/favicon-16x16.png",
-		"/favicon-32x32.png",
-		"/favicon-96x96.png",
 	}, urlPath) {
 		rLocation = minioReservedBucketPath + urlPath
 	}
@@ -189,7 +174,7 @@ func guessIsBrowserReq(req *http.Request) bool {
 		return false
 	}
 	aType := getRequestAuthType(req)
-	return strings.Contains(req.Header.Get("User-Agent"), "Mozilla") && globalBrowserEnabled &&
+	return strings.Contains(req.Header.Get("User-Agent"), "Mozilla") &&
 		(aType == authTypeJWT || aType == authTypeAnonymous)
 }
 
@@ -232,20 +217,6 @@ func guessIsRPCReq(req *http.Request) bool {
 // Adds Cache-Control header
 func setBrowserCacheControlHandler(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if globalBrowserEnabled && r.Method == http.MethodGet && guessIsBrowserReq(r) {
-			// For all browser requests set appropriate Cache-Control policies
-			if HasPrefix(r.URL.Path, minioReservedBucketPath+SlashSeparator) {
-				if HasSuffix(r.URL.Path, ".js") || r.URL.Path == minioReservedBucketPath+"/favicon.ico" {
-					// For assets set cache expiry of one year. For each release, the name
-					// of the asset name will change and hence it can not be served from cache.
-					w.Header().Set(xhttp.CacheControl, "max-age=31536000")
-				} else {
-					// For non asset requests we serve index.html which will never be cached.
-					w.Header().Set(xhttp.CacheControl, "no-store")
-				}
-			}
-		}
-
 		h.ServeHTTP(w, r)
 	})
 }

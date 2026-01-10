@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/klauspost/reedsolomon"
+	"github.com/siriushq/midio/pkg/reedsolomon"
 	"github.com/siriushq/midio/cmd/logger"
 )
 

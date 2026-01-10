@@ -15,7 +15,6 @@ import (
 	"runtime/cgo"
 
 	midio "github.com/siriushq/midio/cmd"
-	_ "github.com/siriushq/midio/cmd/gateway"
 	"github.com/siriushq/midio/cmd/logger"
 
 	"github.com/minio/cli"

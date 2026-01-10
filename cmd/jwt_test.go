@@ -85,9 +85,7 @@ func TestWebRequestAuthenticate(t *testing.T) {
 	if err = newTestConfig(globalMinioDefaultRegion, obj); err != nil {
 		t.Fatal(err)
 	}
-
-	creds := globalActiveCred
-	token, err := getTokenString(creds.AccessKey, creds.SecretKey)
+	
 	if err != nil {
 		t.Fatalf("unable get token %s", err)
 	}
@@ -95,15 +93,6 @@ func TestWebRequestAuthenticate(t *testing.T) {
 		req         *http.Request
 		expectedErr error
 	}{
-		// Set valid authorization header.
-		{
-			req: &http.Request{
-				Header: http.Header{
-					"Authorization": []string{token},
-				},
-			},
-			expectedErr: nil,
-		},
 		// No authorization header.
 		{
 			req: &http.Request{
