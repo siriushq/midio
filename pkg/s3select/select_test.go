@@ -13,7 +13,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/klauspost/cpuid/v2"
+	"github.com/siriushq/midio/pkg/cpuid"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/simdjson-go"
 )
