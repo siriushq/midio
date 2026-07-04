@@ -107,7 +107,6 @@ func NewApp(name string) *cli.App {
 
 	// Register all commands.
 	registerCommand(serverCmd)
-	registerCommand(gatewayCmd)
 
 	// Set up app.
 	cli.HelpFlag = cli.BoolFlag{
@@ -130,6 +129,7 @@ func NewApp(name string) *cli.App {
 		closestCommands := findClosestCommands(command)
 		if len(closestCommands) > 0 {
 			console.Println()
+			
 			console.Println("Did you mean one of these?")
 			for _, cmd := range closestCommands {
 				console.Printf("\t‘%s’\n", cmd)

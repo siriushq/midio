@@ -13,9 +13,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/siriushq/midio/pkg/cpuid"
 	"github.com/minio/minio-go/v7"
-	"github.com/minio/simdjson-go"
 )
 
 type testResponseWriter struct {
@@ -411,63 +409,6 @@ func TestJSONQueries(t *testing.T) {
 
 	for _, testCase := range testTable {
 		t.Run(testCase.name, func(t *testing.T) {
-			// Hack cpuid to the CPU doesn't appear to support AVX2.
-			// Restore whatever happens.
-			if cpuid.CPU.Supports(cpuid.AVX2) {
-				cpuid.CPU.Disable(cpuid.AVX2)
-				defer cpuid.CPU.Enable(cpuid.AVX2)
-			}
-			if simdjson.SupportedCPU() {
-				t.Fatal("setup error: expected cpu to be unsupported")
-			}
-			testReq := testCase.requestXML
-			if len(testReq) == 0 {
-				var escaped bytes.Buffer
-				xml.EscapeText(&escaped, []byte(testCase.query))
-				testReq = []byte(fmt.Sprintf(defRequest, escaped.String()))
-			}
-			s3Select, err := NewS3Select(bytes.NewReader(testReq))
-			if err != nil {
-				t.Fatal(err)
-			}
-
-			if err = s3Select.Open(func(offset, length int64) (io.ReadCloser, error) {
-				in := input
-				if len(testCase.withJSON) > 0 {
-					in = testCase.withJSON
-				}
-				return ioutil.NopCloser(bytes.NewBufferString(in)), nil
-			}); err != nil {
-				t.Fatal(err)
-			}
-
-			w := &testResponseWriter{}
-			s3Select.Evaluate(w)
-			s3Select.Close()
-			resp := http.Response{
-				StatusCode:    http.StatusOK,
-				Body:          ioutil.NopCloser(bytes.NewReader(w.response)),
-				ContentLength: int64(len(w.response)),
-			}
-			res, err := minio.NewSelectResults(&resp, "testbucket")
-			if err != nil {
-				t.Error(err)
-				return
-			}
-			got, err := ioutil.ReadAll(res)
-			if err != nil {
-				t.Error(err)
-				return
-			}
-			gotS := strings.TrimSpace(string(got))
-			if !reflect.DeepEqual(gotS, testCase.wantResult) {
-				t.Errorf("received response does not match with expected reply. Query: %s\ngot: %s\nwant:%s", testCase.query, gotS, testCase.wantResult)
-			}
-		})
-		t.Run("simd-"+testCase.name, func(t *testing.T) {
-			if !simdjson.SupportedCPU() {
-				t.Skip("No CPU support")
-			}
 			testReq := testCase.requestXML
 			if len(testReq) == 0 {
 				var escaped bytes.Buffer

@@ -50,7 +50,6 @@ const TimeFormat string = "15:04:05 MST 01/02/2006"
 var matchingFuncNames = [...]string{
 	"http.HandlerFunc.ServeHTTP",
 	"cmd.serverMain",
-	"cmd.StartGateway",
 	"cmd.(*webAPIHandlers).ListBuckets",
 	"cmd.(*webAPIHandlers).MakeBucket",
 	"cmd.(*webAPIHandlers).DeleteBucket",

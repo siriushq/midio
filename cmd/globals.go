@@ -107,9 +107,6 @@ var (
 	// Indicates if the running minio server is an erasure-code backend.
 	globalIsErasure = false
 
-	// Indicates if the running minio is in gateway mode.
-	globalIsGateway = false
-
 	// Name of gateway server, e.g S3, GCS, Azure, etc
 	globalGatewayName = ""
 
@@ -253,9 +250,6 @@ var (
 
 	// Deployment ID - unique per deployment
 	globalDeploymentID string
-
-	// GlobalGatewaySSE sse options
-	GlobalGatewaySSE gatewaySSE
 
 	globalAllHealState *allHealState
 

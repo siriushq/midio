@@ -24,7 +24,7 @@ import (
 )
 
 type erasureServerPools struct {
-	GatewayUnsupported
+	ObjectLayerDelegate
 
 	serverPools []*erasureSets
 

@@ -15,11 +15,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/minio/simdjson-go"
 	"github.com/siriushq/midio/pkg/s3select/csv"
 	"github.com/siriushq/midio/pkg/s3select/json"
 	"github.com/siriushq/midio/pkg/s3select/parquet"
-	"github.com/siriushq/midio/pkg/s3select/simdj"
 	"github.com/siriushq/midio/pkg/s3select/sql"
 )
 
@@ -312,11 +310,7 @@ func (s3Select *S3Select) Open(getReader func(offset, length int64) (io.ReadClos
 		}
 
 		if strings.EqualFold(s3Select.Input.JSONArgs.ContentType, "lines") {
-			if simdjson.SupportedCPU() {
-				s3Select.recordReader = simdj.NewReader(s3Select.progressReader, &s3Select.Input.JSONArgs)
-			} else {
-				s3Select.recordReader = json.NewPReader(s3Select.progressReader, &s3Select.Input.JSONArgs)
-			}
+			s3Select.recordReader = json.NewPReader(s3Select.progressReader, &s3Select.Input.JSONArgs)
 		} else {
 			s3Select.recordReader = json.NewReader(s3Select.progressReader, &s3Select.Input.JSONArgs)
 		}

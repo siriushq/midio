@@ -130,8 +130,6 @@ func printServerCommonMsg(apiEndpoints []string) {
 		}
 	}
 	printEventNotifiers()
-
-	logStartupMessage(color.Blue("\nBrowser Access: ") + color.Bold("Disabled"))
 }
 
 // Prints bucket notification configurations.

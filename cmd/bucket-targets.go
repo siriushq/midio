@@ -71,9 +71,6 @@ func (sys *BucketTargetSys) ListBucketTargets(ctx context.Context, bucket string
 
 // SetTarget - sets a new minio-go client target for this bucket.
 func (sys *BucketTargetSys) SetTarget(ctx context.Context, bucket string, tgt *madmin.BucketTarget, update bool) error {
-	if globalIsGateway {
-		return nil
-	}
 	if !tgt.Type.IsValid() && !update {
 		return BucketRemoteArnTypeInvalid{Bucket: bucket}
 	}
@@ -156,9 +153,6 @@ func (sys *BucketTargetSys) SetTarget(ctx context.Context, bucket string, tgt *m
 
 // RemoveTarget - removes a remote bucket target for this source bucket.
 func (sys *BucketTargetSys) RemoveTarget(ctx context.Context, bucket, arnStr string) error {
-	if globalIsGateway {
-		return nil
-	}
 	if arnStr == "" {
 		return BucketRemoteArnInvalid{Bucket: bucket}
 	}
@@ -269,11 +263,6 @@ func NewBucketTargetSys() *BucketTargetSys {
 func (sys *BucketTargetSys) Init(ctx context.Context, buckets []BucketInfo, objAPI ObjectLayer) error {
 	if objAPI == nil {
 		return errServerNotInitialized
-	}
-
-	// In gateway mode, bucket targets is not supported.
-	if globalIsGateway {
-		return nil
 	}
 
 	// Load bucket targets once during boot in background.

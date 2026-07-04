@@ -83,13 +83,6 @@ func verifyObjectLayerFeatures(name string, objAPI ObjectLayer) {
 			"Encryption support is requested but '%s' does not support encryption", name)
 	}
 
-	if strings.HasPrefix(name, "gateway") {
-		if GlobalGatewaySSE.IsSet() && GlobalKMS == nil {
-			uiErr := config.ErrInvalidGWSSEEnvValue(nil).Msg("MINIO_GATEWAY_SSE set but KMS is not configured")
-			logger.Fatal(uiErr, "Unable to start gateway with SSE")
-		}
-	}
-
 	globalCompressConfigMu.Lock()
 	if globalCompressConfig.Enabled && !objAPI.IsCompressionSupported() {
 		logger.Fatal(errInvalidArgument,

@@ -26,15 +26,6 @@ import (
 
 // gets replication config associated to a given bucket name.
 func getReplicationConfig(ctx context.Context, bucketName string) (rc *replication.Config, err error) {
-	if globalIsGateway {
-		objAPI := newObjectLayerFn()
-		if objAPI == nil {
-			return nil, errServerNotInitialized
-		}
-
-		return nil, BucketReplicationConfigNotFound{Bucket: bucketName}
-	}
-
 	return globalBucketMetadataSys.GetReplicationConfig(ctx, bucketName)
 }
 
@@ -93,9 +84,6 @@ func mustReplicate(ctx context.Context, r *http.Request, bucket, object string, 
 // mustReplicater returns 2 booleans - true if object meets replication criteria and true if replication is to be done in
 // a synchronous manner.
 func mustReplicater(ctx context.Context, bucket, object string, meta map[string]string, replStatus string) (replicate bool, sync bool) {
-	if globalIsGateway {
-		return replicate, sync
-	}
 	if rs, ok := meta[xhttp.AmzBucketReplicationStatus]; ok {
 		replStatus = rs
 	}

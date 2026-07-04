@@ -38,7 +38,7 @@ var defaultEtag = "00000000000000000000000000000000-1"
 
 // FSObjects - Implements fs object layer.
 type FSObjects struct {
-	GatewayUnsupported
+	ObjectLayerDelegate
 
 	// The count of concurrent calls on FSObjects API
 	activeIOCount int64

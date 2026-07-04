@@ -66,7 +66,6 @@ const (
 type BackendMetrics struct {
 	bytesReceived uint64
 	bytesSent     uint64
-	requestStats  RequestStats
 }
 
 // ObjectLayer implements primitives for object API layer.

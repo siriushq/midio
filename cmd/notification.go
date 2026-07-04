@@ -741,7 +741,7 @@ func (sys *NotificationSys) Init(ctx context.Context, buckets []BucketInfo, objA
 	}
 
 	// In gateway mode, notifications are not supported - except NAS gateway.
-	if globalIsGateway && !objAPI.IsNotificationSupported() {
+	if !objAPI.IsNotificationSupported() {
 		return nil
 	}
 

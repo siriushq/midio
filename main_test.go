@@ -13,7 +13,6 @@ import (
 	"testing"
 
 	minio "github.com/siriushq/midio/cmd"
-	_ "github.com/siriushq/midio/cmd/gateway"
 )
 
 // TestRunMain takes arguments from APP_ARGS env variable and calls minio.Main(args)

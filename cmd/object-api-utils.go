@@ -22,6 +22,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/klauspost/compress/s2"
 	"github.com/klauspost/readahead"
+	minio "github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/s3utils"
 	"github.com/siriushq/midio/cmd/config/compress"
 	"github.com/siriushq/midio/cmd/config/dns"
@@ -32,6 +33,7 @@ import (
 	"github.com/siriushq/midio/pkg/bucket/lifecycle"
 	"github.com/siriushq/midio/pkg/hash"
 	"github.com/siriushq/midio/pkg/ioutil"
+	xnet "github.com/siriushq/midio/pkg/net"
 	"github.com/siriushq/midio/pkg/trie"
 	"github.com/siriushq/midio/pkg/wildcard"
 )
@@ -969,4 +971,69 @@ func compressSelfTest() {
 		logger.Fatal(errSelfTestFailure, "compress: self-test roundtrip mismatch.")
 
 	}
+}
+
+// ErrorRespToObjectError converts MinIO errors to minio object layer errors.
+func ErrorRespToObjectError(err error, params ...string) error {
+	if err == nil {
+		return nil
+	}
+
+	bucket := ""
+	object := ""
+	if len(params) >= 1 {
+		bucket = params[0]
+	}
+	if len(params) == 2 {
+		object = params[1]
+	}
+
+	if xnet.IsNetworkOrHostDown(err, false) {
+		return BackendDown{}
+	}
+
+	minioErr, ok := err.(minio.ErrorResponse)
+	if !ok {
+		// We don't interpret non MinIO errors. As minio errors will
+		// have StatusCode to help to convert to object errors.
+		return err
+	}
+
+	switch minioErr.Code {
+	case "BucketAlreadyOwnedByYou":
+		err = BucketAlreadyOwnedByYou{}
+	case "BucketNotEmpty":
+		err = BucketNotEmpty{}
+	case "NoSuchBucketPolicy":
+		err = BucketPolicyNotFound{}
+	case "NoSuchLifecycleConfiguration":
+		err = BucketLifecycleNotFound{}
+	case "InvalidBucketName":
+		err = BucketNameInvalid{Bucket: bucket}
+	case "InvalidPart":
+		err = InvalidPart{}
+	case "NoSuchBucket":
+		err = BucketNotFound{Bucket: bucket}
+	case "NoSuchKey":
+		if object != "" {
+			err = ObjectNotFound{Bucket: bucket, Object: object}
+		} else {
+			err = BucketNotFound{Bucket: bucket}
+		}
+	case "XMinioInvalidObjectName":
+		err = ObjectNameInvalid{}
+	case "AccessDenied":
+		err = PrefixAccessDenied{
+			Bucket: bucket,
+			Object: object,
+		}
+	case "XAmzContentSHA256Mismatch":
+		err = hash.SHA256Mismatch{}
+	case "NoSuchUpload":
+		err = InvalidUploadID{}
+	case "EntityTooSmall":
+		err = PartTooSmall{}
+	}
+
+	return err
 }

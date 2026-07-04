@@ -1226,10 +1226,6 @@ func getBucketUsageMetrics() MetricsGroup {
 				return
 			}
 
-			if globalIsGateway {
-				return
-			}
-
 			dataUsageInfo, err := loadDataUsageFromBackend(ctx, objLayer)
 			if err != nil {
 				return
@@ -1316,10 +1312,6 @@ func getLocalStorageMetrics() MetricsGroup {
 				return
 			}
 
-			if globalIsGateway {
-				return
-			}
-
 			metrics = make([]Metric, 0, 50)
 			storageInfo, _ := objLayer.LocalStorageInfo(ctx)
 			for _, disk := range storageInfo.Disks {
@@ -1353,10 +1345,6 @@ func getClusterStorageMetrics() MetricsGroup {
 			objLayer := newObjectLayerFn()
 			// Service not initialized yet
 			if objLayer == nil {
-				return
-			}
-
-			if globalIsGateway {
 				return
 			}
 
