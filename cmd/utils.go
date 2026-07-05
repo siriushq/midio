@@ -30,7 +30,6 @@ import (
 	xhttp "github.com/siriushq/midio/cmd/http"
 	"github.com/siriushq/midio/cmd/logger"
 	"github.com/siriushq/midio/cmd/rest"
-	"github.com/siriushq/midio/pkg/certs"
 	"github.com/siriushq/midio/pkg/handlers"
 	"github.com/siriushq/midio/pkg/madmin"
 	"golang.org/x/net/http2"
@@ -586,41 +585,6 @@ func newCustomHTTPTransport(tlsConfig *tls.Config, dialTimeout time.Duration) fu
 	return func() *http.Transport {
 		return tr
 	}
-}
-
-// NewGatewayHTTPTransportWithClientCerts returns a new http configuration
-// used while communicating with the cloud backends.
-func NewGatewayHTTPTransportWithClientCerts(clientCert, clientKey string) *http.Transport {
-	transport := newGatewayHTTPTransport(1 * time.Minute)
-	if clientCert != "" && clientKey != "" {
-		ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-		defer cancel()
-		c, err := certs.NewManager(ctx, clientCert, clientKey, tls.LoadX509KeyPair)
-		if err != nil {
-			logger.LogIf(ctx, fmt.Errorf("failed to load client key and cert, please check your endpoint configuration: %s",
-				err.Error()))
-		}
-		if c != nil {
-			transport.TLSClientConfig.GetClientCertificate = c.GetClientCertificate
-		}
-	}
-	return transport
-}
-
-// NewGatewayHTTPTransport returns a new http configuration
-// used while communicating with the cloud backends.
-func NewGatewayHTTPTransport() *http.Transport {
-	return newGatewayHTTPTransport(1 * time.Minute)
-}
-
-func newGatewayHTTPTransport(timeout time.Duration) *http.Transport {
-	tr := newCustomHTTPTransport(&tls.Config{
-		RootCAs: globalRootCAs,
-	}, defaultDialTimeout)()
-
-	// Customize response header timeout for gateway transport.
-	tr.ResponseHeaderTimeout = timeout
-	return tr
 }
 
 // NewRemoteTargetHTTPTransport returns a new http configuration

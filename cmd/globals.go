@@ -52,7 +52,6 @@ const (
 	globalMinioModeFS              = "mode-server-fs"
 	globalMinioModeErasure         = "mode-server-xl"
 	globalMinioModeDistErasure     = "mode-server-distributed-xl"
-	globalMinioModeGatewayPrefix   = "mode-gateway-"
 	globalDirSuffix                = "__XLDIR__"
 	globalDirSuffixWithSlash       = globalDirSuffix + slashSeparator
 
@@ -106,9 +105,6 @@ var (
 
 	// Indicates if the running minio server is an erasure-code backend.
 	globalIsErasure = false
-
-	// Name of gateway server, e.g S3, GCS, Azure, etc
-	globalGatewayName = ""
 
 	// This flag is set to 'true' when MINIO_UPDATE env is set to 'off'. Default is false.
 	globalInplaceUpdateDisabled = false

@@ -255,18 +255,6 @@ Example 1:
 		"Compress extensions/mime-types are delimited by `,`. For eg, MINIO_COMPRESS_MIME_TYPES=\"A,B,C\"",
 	)
 
-	ErrInvalidGWSSEValue = newErrFn(
-		"Invalid gateway SSE value",
-		"Please check the passed value",
-		"MINIO_GATEWAY_SSE: Gateway SSE accepts only C and S3 as valid values. Delimit by `;` to set more than one value",
-	)
-
-	ErrInvalidGWSSEEnvValue = newErrFn(
-		"Invalid gateway SSE configuration",
-		"",
-		"Refer to https://docs.min.io/docs/minio-kms-quickstart-guide.html for setting up SSE",
-	)
-
 	ErrInvalidReplicationWorkersValue = newErrFn(
 		"Invalid value for replication workers",
 		"",

@@ -22,9 +22,7 @@ import (
 	"github.com/siriushq/midio/cmd/config/scanner"
 	"github.com/siriushq/midio/cmd/config/storageclass"
 	"github.com/siriushq/midio/cmd/crypto"
-	xhttp "github.com/siriushq/midio/cmd/http"
 	"github.com/siriushq/midio/cmd/logger"
-	"github.com/siriushq/midio/cmd/logger/target/http"
 	"github.com/siriushq/midio/pkg/env"
 	"github.com/siriushq/midio/pkg/kms"
 	"github.com/siriushq/midio/pkg/madmin"
@@ -277,11 +275,6 @@ func validateConfig(s config.Config, setDriveCounts []int) error {
 			etcdClnt.Close()
 		}
 	}
-	if _, err := openid.LookupConfig(s[config.IdentityOpenIDSubSys][config.Default],
-		NewGatewayHTTPTransport(), xhttp.DrainBody); err != nil {
-		return err
-	}
-
 	{
 		cfg, err := xldap.Lookup(s[config.IdentityLDAPSubSys][config.Default],
 			globalRootCAs)
@@ -297,16 +290,11 @@ func validateConfig(s config.Config, setDriveCounts []int) error {
 		}
 	}
 
-	if _, err := opa.LookupConfig(s[config.PolicyOPASubSys][config.Default],
-		NewGatewayHTTPTransport(), xhttp.DrainBody); err != nil {
-		return err
-	}
-
 	if _, err := logger.LookupConfig(s); err != nil {
 		return err
 	}
 
-	return notify.TestNotificationTargets(GlobalContext, s, NewGatewayHTTPTransport(), globalNotificationSys.ConfiguredTargetIDs())
+	return nil
 }
 
 func lookupConfigs(s config.Config, setDriveCounts []int) {
@@ -382,11 +370,6 @@ func lookupConfigs(s config.Config, setDriveCounts []int) {
 
 	globalAPIConfig.init(apiConfig, setDriveCounts)
 
-	// Initialize remote instance transport once.
-	getRemoteInstanceTransportOnce.Do(func() {
-		getRemoteInstanceTransport = newGatewayHTTPTransport(apiConfig.RemoteTransportDeadline)
-	})
-
 	if globalIsErasure {
 		for i, setDriveCount := range setDriveCounts {
 			sc, err := storageclass.LookupConfig(s[config.StorageClassSubSys][config.Default], setDriveCount)
@@ -421,20 +404,7 @@ func lookupConfigs(s config.Config, setDriveCounts []int) {
 		logger.Fatal(errors.New("no KMS configured"), "MINIO_KMS_AUTO_ENCRYPTION requires a valid KMS configuration")
 	}
 
-	globalOpenIDConfig, err = openid.LookupConfig(s[config.IdentityOpenIDSubSys][config.Default],
-		NewGatewayHTTPTransport(), xhttp.DrainBody)
-	if err != nil {
-		logger.LogIf(ctx, fmt.Errorf("Unable to initialize OpenID: %w", err))
-	}
-
-	opaCfg, err := opa.LookupConfig(s[config.PolicyOPASubSys][config.Default],
-		NewGatewayHTTPTransport(), xhttp.DrainBody)
-	if err != nil {
-		logger.LogIf(ctx, fmt.Errorf("Unable to initialize OPA: %w", err))
-	}
-
 	globalOpenIDValidators = getOpenIDValidators(globalOpenIDConfig)
-	globalPolicyOPA = opa.New(opaCfg)
 
 	globalLDAPConfig, err = xldap.Lookup(s[config.IdentityLDAPSubSys][config.Default],
 		globalRootCAs)
@@ -442,58 +412,8 @@ func lookupConfigs(s config.Config, setDriveCounts []int) {
 		logger.LogIf(ctx, fmt.Errorf("Unable to parse LDAP configuration: %w", err))
 	}
 
-	// Load logger targets based on user's configuration
-	loggerUserAgent := getUserAgent(getMinioMode())
-
-	loggerCfg, err := logger.LookupConfig(s)
 	if err != nil {
 		logger.LogIf(ctx, fmt.Errorf("Unable to initialize logger: %w", err))
-	}
-
-	for k, l := range loggerCfg.HTTP {
-		if l.Enabled {
-			// Enable http logging
-			if err = logger.AddTarget(
-				http.New(
-					http.WithTargetName(k),
-					http.WithEndpoint(l.Endpoint),
-					http.WithAuthToken(l.AuthToken),
-					http.WithUserAgent(loggerUserAgent),
-					http.WithLogKind(string(logger.All)),
-					http.WithTransport(NewGatewayHTTPTransport()),
-				),
-			); err != nil {
-				logger.LogIf(ctx, fmt.Errorf("Unable to initialize console HTTP target: %w", err))
-			}
-		}
-	}
-
-	for k, l := range loggerCfg.Audit {
-		if l.Enabled {
-			// Enable http audit logging
-			if err = logger.AddAuditTarget(
-				http.New(
-					http.WithTargetName(k),
-					http.WithEndpoint(l.Endpoint),
-					http.WithAuthToken(l.AuthToken),
-					http.WithUserAgent(loggerUserAgent),
-					http.WithLogKind(string(logger.All)),
-					http.WithTransport(NewGatewayHTTPTransportWithClientCerts(l.ClientCert, l.ClientKey)),
-				),
-			); err != nil {
-				logger.LogIf(ctx, fmt.Errorf("Unable to initialize audit HTTP target: %w", err))
-			}
-		}
-	}
-
-	globalConfigTargetList, err = notify.GetNotificationTargets(GlobalContext, s, NewGatewayHTTPTransport(), false)
-	if err != nil {
-		logger.LogIf(ctx, fmt.Errorf("Unable to initialize notification target(s): %w", err))
-	}
-
-	globalEnvTargetList, err = notify.GetNotificationTargets(GlobalContext, newServerConfig(), NewGatewayHTTPTransport(), true)
-	if err != nil {
-		logger.LogIf(ctx, fmt.Errorf("Unable to initialize notification target(s): %w", err))
 	}
 
 	// Apply dynamic config values

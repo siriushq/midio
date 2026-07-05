@@ -39,7 +39,6 @@ var (
 
 const (
 	healMetricsNamespace = "self_heal"
-	gatewayNamespace     = "gateway"
 	cacheNamespace       = "cache"
 	s3Namespace          = "s3"
 	bucketNamespace      = "bucket"
