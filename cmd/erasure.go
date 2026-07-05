@@ -33,7 +33,7 @@ type partialOperation struct {
 
 // erasureObjects - Implements ER object layer.
 type erasureObjects struct {
-	ObjectLayerDelegate
+	ObjectLayerBase
 
 	setDriveCount      int
 	defaultParityCount int

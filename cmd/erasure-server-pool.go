@@ -24,7 +24,7 @@ import (
 )
 
 type erasureServerPools struct {
-	ObjectLayerDelegate
+	ObjectLayerBase
 
 	serverPools []*erasureSets
 

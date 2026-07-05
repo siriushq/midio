@@ -36,7 +36,7 @@ const envMinioDeleteCleanupInterval = "MINIO_DELETE_CLEANUP_INTERVAL"
 // object sets. NOTE: There is no dynamic scaling allowed or intended in
 // current design.
 type erasureSets struct {
-	ObjectLayerDelegate
+	ObjectLayerBase
 
 	sets []*erasureObjects
 
